@@ -72,7 +72,7 @@
 
       setTimeout(function() {
         handleOnLoad(style, callback, count - 1);
-      }, 1000)
+      }, 2000) // two whole seconds for cuzillion
     }
   }  
   
