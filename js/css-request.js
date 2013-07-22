@@ -99,7 +99,7 @@
     	
     	
       window.onreadystatechange = function (e) {
-    	console.log(window.readyState + '; ' + (e.target || e.srcElement));
+    	console.log(window.readyState);
     	
       }
     	
