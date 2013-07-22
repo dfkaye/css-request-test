@@ -64,7 +64,7 @@
         
         var length;
         
-        if (style.styleSheet) {
+        if (style.styleSheet && !style.sheet) {
           length = style.styleSheet.rules.length
           // MSIE
           console.log('MSIE:' + style.styleSheet.rules.length)
@@ -101,24 +101,26 @@
         requested[url] = url;
         
         try {
-        	cssText += "\n@import url(" + url + ");";
+          cssText += "\n@import url(" + url + ");";
         } catch (err) {
-        	global.console && console.warn(err + ': ' + url);
+          global.console && console.warn(err + ': ' + url);
         } finally {
-        	continue;
+          continue;
         }
     	}
     }       
         
     // try not to block other processes
     setTimeout(function () {
-    	
-    	if (style.styleSheet) {
+      
+      if (style.styleSheet) {
         // internet explorer
         style.styleSheet.cssText = cssText;
+        
     	} else {
         // most dom compliant browsers
         style.appendChild(document.createTextNode(cssText));
+        
     	}
     	
     }, 25);
