@@ -28,7 +28,8 @@
   
   function handleOnLoad(style, callback, count) {
     
-    global.console && console.log('handleOnLoad ' + count);
+    var message = 'handleOnLoad ' + count;
+
     
     var length;
     var sheet;
@@ -49,6 +50,8 @@
       cssRules = sheet.imports
       length = cssRules.length
       
+      message += '; MSIE'
+
     } else if (style.sheet) {
     	
       sheet = style.sheet;
@@ -62,8 +65,13 @@
       }
       
       length = cssRules.length
+      
+      message += '; W3C'
     }
-  
+
+
+    global.console && console.log(message);
+
     if (length > 0) {
       
       callback()
