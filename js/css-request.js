@@ -34,21 +34,22 @@
     
     if (style.styleSheet) {
       sheet = style.styleSheet
+      console.dir(sheet)
+      
       cssRules = sheet.rules      
       length = cssRules.length
-      
-      console.dir(cssRules)
-      
+            
       // MSIE
       console.log('MSIE')
       console.log(length)
       
     } else if (style.sheet) {
-    	sheet = style.sheet
+      sheet = style.sheet
+      console.dir(sheet)
       cssRules = sheet.cssRules
       length = cssRules.length
       
-      console.dir(cssRules)
+      
       
       // W3C
       console.log('W3C')
