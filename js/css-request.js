@@ -60,7 +60,7 @@
       message += '; W3C; ' + length
     }
 
-    window.console && console.log(message);
+    window.console && console.log(message + '; ' + document.readyState);
 
     if (length > 0) {
             
@@ -96,11 +96,6 @@
     //style.setAttribute('media', 'all');
 		
     if (typeof callback === 'function') {
-    	
-    	
-      document.onreadystatechange = function () {
-    	console.log(document.readyState);
-      }
     	
       len = len - 1;
       
