@@ -75,6 +75,8 @@
 
     if (length > 0) {
       
+      style.disabled = false;
+      
       callback()
       
     } else if (sheet && count > 0) {
@@ -105,7 +107,9 @@
   
     style.setAttribute('type', 'text/css');
     style.setAttribute('media', 'all');
-  
+
+		style.disabled = true;
+		
     if (typeof callback === 'function') {
     	
     	len = len - 1;
