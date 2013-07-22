@@ -38,7 +38,7 @@
       sheet = style.styleSheet; // ie
       cssRules = sheet.rules;
       
-      console.dir(cssRules)
+      console.dir(sheet)
       length = cssRules.length;
       
     } else if (style.sheet) {
