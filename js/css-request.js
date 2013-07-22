@@ -119,26 +119,23 @@
        * BUT, style element fires load event!
        * AND, we can use multiple imports in a style to beat the IE restriction (no kidding!).
        */
-      style.onload = function () {
-        style.onload = null;
 
-      	handleOnLoad(style, callback, 20) // see above - try 20 times
-      };
       
       if (style.addEventListener) {
-        style.addEventListener('load', function() {
-    
+      	function handle( function() {
+          style.removeEventListener(handle);
+          
           handleOnLoad(style, callback, 20) // see above - try 20 times
-        }, false);
+        });
+        
+        style.addEventListener('load', handle, false);
+      } else {
+      	
+        style.onload = function () {
+          style.onload = null;
+
+      	  handleOnLoad(style, callback, 20) // see above - try 20 times
       }
-      
-      style.onreadystatechange = function() {
-        var state = style.readyState;
-        if (state === 'loaded' || state === 'complete') {
-          style.onreadystatechange = null;
-          handleOnLoad(style, callback, 20) // see above - try 20 times
-        }
-      };
 
     }
         
@@ -173,11 +170,11 @@
     setTimeout(function () {
     	
     	if (style.styleSheet) {
-    		// internet explorer
-    		style.styleSheet.cssText = cssText;
+    	  // internet explorer
+          style.styleSheet.cssText = cssText;
     	} else {
-    		// most dom compliant browsers
-        style.appendChild(document.createTextNode(cssText));
+          // most dom compliant browsers
+          style.appendChild(document.createTextNode(cssText));
     	}
     	
     }, 25);
