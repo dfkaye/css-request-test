@@ -32,21 +32,24 @@
     
     var length;
     
-    console.dir(style)
+    
     
     if (style.styleSheet) {
-    	
+      console.dir(style.styleSheet)
+      
       length = style.styleSheet.rules.length
       // MSIE
-      console.log('MSIE')
-      console.log(style.styleSheet.rules.length)
+      //console.log('MSIE')
+      //console.log(style.styleSheet.rules.length)
       
     } else if (style.sheet) {
+      console.dir(style.sheet)
+      
       length = style.sheet.cssRules.length
       
       // W3C
-      console.log('W3C')
-      console.log(style.sheet.cssRules.length)
+      //console.log('W3C')
+      //console.log(style.sheet.cssRules.length)
     }
   
     
