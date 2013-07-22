@@ -32,8 +32,8 @@
     var sheet;
     var cssRules;
     
-          console.log('style tag');
-          cosole.log(style)
+    console.log('style tag');
+    console.log(style)
 
     
     if (style.styleSheet) {
