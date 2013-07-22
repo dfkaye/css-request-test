@@ -138,9 +138,9 @@
     
     for (var i = 0; i < len; i++) {
     	
-    	url = args[i];
+      url = args[i];
     
-    	if (typeof url == 'string' && !(url in requested)) {
+      if (typeof url == 'string' && !(url in requested)) {
         
         requested[url] = url;
         
@@ -150,9 +150,8 @@
           global.console && console.warn(err + ': ' + url);
         } finally {
           continue;
-        }
-        
-    	}
+        } 
+      }
     }
     
     // try not to block other processes
@@ -165,6 +164,7 @@
         // most dom compliant browsers
         style.appendChild(document.createTextNode(cssText));
       }
+      
     }, 0);
 
   }
