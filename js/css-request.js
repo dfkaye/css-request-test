@@ -58,7 +58,7 @@
     if (length > 0) {
       callback()
       
-    } else if (sheet&& count > 0) {
+    } else if (sheet && count > 0) {
 
       setTimeout(function() {
         handleOnLoad(style, callback, count - 1);
@@ -98,7 +98,7 @@
        * AND, we can use multiple imports in a style to beat the IE restriction (no kidding!).
        */
       style.onload = function () {
-        style.onload = null;
+        //style.onload = null;
 
       	handleOnLoad(style, callback, 20) // see above - try 20 times
       };
@@ -121,28 +121,29 @@
         requested[url] = url;
         
         try {
-          cssText += "\n@import url(" + url + ");";
+          //cssText += "\n@import url(" + url + ");";
+          
+          // the empty style sheet 
+          var sheet = style.sheet ? style.sheet : styleTag.styleSheet;
+          
+          if (sheet.insertRule) { 
+             // all browsers, except IE before version 9 
+             sheet.insertRule ("@import url(" + url + ");", 0); 
+          } else { 
+            // Internet Explorer before version 9 
+            if (sheet.addImport) { 
+              sheet.addImport (url); 
+            }
+          }          
         } catch (err) {
           global.console && console.warn(err + ': ' + url);
         } finally {
           continue;
         }
+        
     	}
     }       
-        
-    // try not to block other processes
-    setTimeout(function () {
-      
-      if (style.styleSheet) {
-        // internet explorer
-        style.styleSheet.cssText = cssText;
-        
-    	} else {
-        // most dom compliant browsers
-        style.appendChild(document.createTextNode(cssText));
-    	}
-    }, 25);
-  	
+
   }
   
 }());
