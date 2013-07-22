@@ -37,8 +37,6 @@
 	 * callback - last argument must be a function
 	 */
 	function requestCss() {
-
-    var ruleCount = 0;
     
   	var args = arguments;
 	  var len = args.length;
@@ -50,6 +48,7 @@
 	  style.setAttribute('media', 'all');
 
 	  if (typeof callback === 'function') {
+      
 		  len = len - 1;
       
       /*
@@ -59,7 +58,9 @@
        * AND, we can use multiple imports in a style to beat the IE restriction (no kidding!).
        */
       style.onload = onload;
+      
       function onload() {
+        
         style.onload = null;
         
         var sheet = style.styleSheet || style.sheet
@@ -78,9 +79,9 @@
           callback()
         } else {
           
-          setTimeout(onload, 100)
+          setTimeout(onload, 250)
         }
-      };
+      }
       
     }
         
@@ -110,18 +111,18 @@
 			}
 		}       
         
-		// try not to block other processes
-		setTimeout(function () {
-			
-			if (style.styleSheet) {
-				// internet explorer
-				style.styleSheet.cssText = cssText;
-			} else {
-				// most dom compliant browsers
-			    style.appendChild(document.createTextNode(cssText));
-			}
-			
-		}, 0);
+    // try not to block other processes
+    setTimeout(function () {
+    	
+    	if (style.styleSheet) {
+        // internet explorer
+        style.styleSheet.cssText = cssText;
+    	} else {
+        // most dom compliant browsers
+        style.appendChild(document.createTextNode(cssText));
+    	}
+    	
+    }, 25);
 		
 	}
 
