@@ -51,7 +51,11 @@
       
       console.dir(sheet)
       
-      cssRules = sheet.cssRules || '' // firefox bonk out
+      try {
+        cssRules = sheet.cssRules;
+      } catch(err) {
+        cssRules = '';// firefox bonk out
+      }
       length = cssRules.length
 
       // W3C
