@@ -98,9 +98,8 @@
     if (typeof callback === 'function') {
     	
     	
-      window.onreadystatechange = function (e) {
-    	console.log(window.readyState);
-    	
+      document.onreadystatechange = function () {
+    	console.log(document.readyState);
       }
     	
       len = len - 1;
