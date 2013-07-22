@@ -120,17 +120,20 @@
         
       } else if (style.onreadystatechange) {
         
-        if (style.readyState == 'loaded' || style.readyState == 'complete')
-      	  style.onreadystatechange = null;
-          handleOnLoad(style, callback, 20) // see above - try 20 times
+        style.onreadystatechange = function () {
+          if (style.readyState == 'loaded' || style.readyState == 'complete') {
+        	  style.onreadystatechange = null;
+            handleOnLoad(style, callback, 20) // see above - try 20 times
+          }
         }
-                
+        
       } else {
       	
         style.onload = function () {
           style.onload = null;
       	  handleOnLoad(style, callback, 20) // see above - try 20 times
         }
+        
       }
       
     }
