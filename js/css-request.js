@@ -27,7 +27,9 @@
   var requested = {};
   
   function handleOnLoad(style, callback, count) {
-        
+    
+    console.log('ss: ' + document.styleSheets.length)
+    
     var length;
     
     if (style.styleSheet) {
