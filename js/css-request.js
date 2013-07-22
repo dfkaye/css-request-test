@@ -35,9 +35,11 @@
     
     if (style.styleSheet) {
       // MSIE
-      sheet = style.styleSheet // ie
-      cssRules = sheet.rules      
-      length = cssRules.length
+      sheet = style.styleSheet; // ie
+      cssRules = sheet.rules;
+      
+      console.dir(cssRules)
+      length = cssRules.length;
       
     } else if (style.sheet) {
     	
