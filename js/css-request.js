@@ -34,37 +34,26 @@
     
     
     if (style.styleSheet) {
+      // MSIE
       sheet = style.styleSheet // ie
-      
-      console.dir(sheet)
-      
       cssRules = sheet.rules      
       length = cssRules.length
-            
-      // MSIE
-      console.log('MSIE')
-      console.log(length)
       
     } else if (style.sheet) {
     	
       sheet = style.sheet;
-      
-      console.dir(sheet)
       
       try {
         cssRules = sheet.cssRules;
       } catch(err) {
         cssRules = '';// firefox bonk out
       }
+      
       length = cssRules.length
-
-      // W3C
-      console.log('W3C')
-      console.log(cssRules.length)
     }
   
-    
     if (length > 0) {
+      
       callback()
       
     } else if (sheet && count > 0) {
@@ -148,10 +137,10 @@
     		style.styleSheet.cssText = cssText;
     	} else {
     		// most dom compliant browsers
-    	    style.appendChild(document.createTextNode(cssText));
+        style.appendChild(document.createTextNode(cssText));
     	}
     	
-    }, 0);
+    }, 25);
 
   }
   
