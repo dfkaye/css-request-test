@@ -56,7 +56,7 @@
     	
       sheet = style.sheet;
       
-      //console.dir(sheet)
+      console.dir(sheet)
       
       try {
         cssRules = sheet.cssRules;
