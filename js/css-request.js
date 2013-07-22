@@ -98,11 +98,12 @@
     if (typeof callback === 'function') {
     	
     	
-    	window.onreadystatechange = function (e) {
-    	console.log(window.readyState + '; ' + (e.target || e.srcElement)
-    	}
+      window.onreadystatechange = function (e) {
+    	console.log(window.readyState + '; ' + (e.target || e.srcElement));
     	
-    	len = len - 1;
+      }
+    	
+      len = len - 1;
       
       /*
        * link elements don't fire load event cross-browser (webkit, FF < 9 - opera uses addEventListener...)
