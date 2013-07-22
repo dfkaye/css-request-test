@@ -28,40 +28,37 @@
   
   function handleOnLoad(style, callback, count) {
     
-    var i = document.styleSheets.length;
-    var found = false;
-    while (i-- && !found) {
-      found = (document.styleSheets[i] === (style.styleSheet || style.sheet))
-    }
-    
-    console.log('ss: ' + document.styleSheets.length + '; found? ' + found + ' at ' + i)
-    
     var length;
+    var sheet;
+    var cssRules;
     
     if (style.styleSheet) {
+      sheet = style.styleSheet
+      cssRules = sheet.rules      
+      length = cssRules.length
       
-      console.dir(style.styleSheet.rules)
+      console.dir(cssRules)
       
-      length = style.styleSheet.rules.length
       // MSIE
       console.log('MSIE')
-      console.log(style.styleSheet.rules.length)
+      console.log(length)
       
     } else if (style.sheet) {
-    	
-      console.dir(style.sheet.cssRules)
+    	sheet = style.sheet
+      cssRules = sheet.cssRules
+      length = cssRules.length
       
-      length = style.sheet.cssRules.length
+      console.dir(cssRules)
       
       // W3C
       console.log('W3C')
-      console.log(style.sheet.cssRules.length)
+      console.log(cssRules.length)
     }
   
     
     if (length > 0 && count > 0) {
       callback()
-    } else {
+    } else if (sheet) {
 
       setTimeout(function() {
         handleOnLoad(style, callback, count - 1);
