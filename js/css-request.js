@@ -28,6 +28,8 @@
   
   function handleOnLoad(style, callback, count) {
     
+    global.console && console.log('handleOnLoad ' + count);
+    
     var length;
     var sheet;
     var cssRules;
