@@ -39,16 +39,16 @@
 	function requestCss() {
 
   	var args = arguments;
-		var len = args.length;
-		var callback = args[len - 1];
-    
-		var style = document.createElement('style');
-		
-		style.setAttribute('type', 'text/css');
-		style.setAttribute('media', 'all');
+	  var len = args.length;
+	  var callback = args[len - 1];
 
-		if (typeof callback === 'function') {
-			len = len - 1;
+	  var style = document.createElement('style');
+	
+	  style.setAttribute('type', 'text/css');
+	  style.setAttribute('media', 'all');
+
+	  if (typeof callback === 'function') {
+		  len = len - 1;
       
       /*
        * link elements don't fire load event cross-browser (webkit, FF < 9 - opera uses addEventListener...)
@@ -60,7 +60,6 @@
         style.onload = null;
         callback();
       };
-      
       
     }
         
