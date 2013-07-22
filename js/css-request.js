@@ -40,9 +40,12 @@
       
       console.dir(sheet)
       
-      cssRules = sheet.rules;
-
-      length = cssRules.length;
+      //cssRules = sheet.rules;
+      //length = cssRules.length;
+      
+      // 
+      cssRules = sheet.imports
+      length = cssRules.length
       
     } else if (style.sheet) {
     	
