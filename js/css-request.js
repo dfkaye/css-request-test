@@ -17,10 +17,8 @@
 (function () {
   
   /* public */
-	
-  var global = global || window;
-  
-  global.requestCss = requestCss;
+	  
+  window.requestCss = requestCss;
   
   /* local */
   
@@ -62,7 +60,7 @@
       message += '; W3C; ' + length
     }
 
-    global.console && console.log(message);
+    window.console && console.log(message);
 
     if (length > 0) {
             
