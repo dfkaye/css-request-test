@@ -41,8 +41,9 @@
       // MSIE
       sheet = style.styleSheet;
       
-      console.dir(sheet)
-      
+      console.dir(sheet.rules)
+      console.dir(sheet.imports)
+
       //cssRules = sheet.rules;
       //length = cssRules.length;
       
