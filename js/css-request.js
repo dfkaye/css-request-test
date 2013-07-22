@@ -1,5 +1,5 @@
 /**
- * file: css-reques.js - provides stylesheet requestCss() api to JavaScript - 
+ * file: css-request.js - provides stylesheet requestCss() api to JavaScript - 
  * author: @dfkaye - david.kaye
  * first: 12 FEB 2013
  * previous: 12 FEB 2013
@@ -31,7 +31,7 @@
     var i = document.styleSheets.length;
     var found = false;
     while (i-- && !found) {
-      found = document.styleSheets[i] === style
+      found = (document.styleSheets[i] === (style.styleSheet || style.sheet))
     }
     
     console.log('ss: ' + document.styleSheets.length + '; found at ' + i)
