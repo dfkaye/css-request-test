@@ -58,9 +58,12 @@
       
       length = cssRules.length
       message += '; W3C; ' + length
+    } else {
+    	
+    	message += "; don't know what's going on"
     }
 
-    window.console && console.log(message + '; ' + document.readyState);
+    !!console && console.log(message + '; ' + document.readyState);
 
     if (length > 0) {
             
@@ -108,6 +111,7 @@
 
       
       if (style.addEventListener) {
+      	console.log('addEventListener')
       	
       	function handle() {
           style.removeEventListener('load', handle, false);
@@ -117,7 +121,8 @@
         style.addEventListener('load', handle, false);
         
       } else if (style.onreadystatechange) {
-        
+      	console.log('onreadystatechange')
+
         style.onreadystatechange = function () {
           if (style.readyState == 'loaded' || style.readyState == 'complete') {
             style.onreadystatechange = null;
@@ -126,7 +131,8 @@
         }
         
       } else {
-      	
+      	console.log('onload')
+
         style.onload = function () {
           style.onload = null;
       	  handleOnLoad(style, callback, 20) // see above - try 20 times
