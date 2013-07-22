@@ -36,8 +36,8 @@
    * callback - last argument must be a function
    */
   function requestCss() {
-  	
-  	var args = arguments;
+    
+    var args = arguments;
     var len = args.length;
     var callback = args[len - 1];
   
@@ -62,22 +62,22 @@
         
         style.onload = null;
         
-        var sheet = style.styleSheet || style.sheet
-        var cssRules = sheet.rules || sheet.cssRules
+        var length;
         
         if (style.styleSheet) {
+          length = style.styleSheet.rules.length
           // MSIE
-          console.log('MSIE:' + cssRules.length)
+          console.log('MSIE:' + style.styleSheet.rules.length)
         } else if (style.sheet) {
+          length = style.sheet.cssRules.length
           // W3C
-          console.log('W3C:' + cssRules.length)
+          console.log('W3C:' + style.sheet.cssRules.length)
         }
       
         
-        if (cssRules.length > 0) {
+        if (length > 0) {
           callback()
         } else {
-          
           setTimeout(onload, 250)
         }
       }
