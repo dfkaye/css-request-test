@@ -36,7 +36,7 @@
    * callback - last argument must be a function
    */
   function requestCss() {
-    
+  	
   	var args = arguments;
     var len = args.length;
     var callback = args[len - 1];
@@ -47,8 +47,8 @@
     style.setAttribute('media', 'all');
   
     if (typeof callback === 'function') {
-      
-  	  len = len - 1;
+    	
+    	len = len - 1;
       
       /*
        * link elements don't fire load event cross-browser (webkit, FF < 9 - opera uses addEventListener...)
@@ -97,16 +97,16 @@
     	url = args[i];
     
     	if (typeof url == 'string' && !(url in requested)) {
-    		
-    		requested[url] = url;
-    		
-    		try {
-    			cssText += "\n@import url(" + url + ");";
-    		} catch (err) {
-    			global.console && console.warn(err + ': ' + url);
-    		} finally {
-    			continue;
-    		}
+        
+        requested[url] = url;
+        
+        try {
+        	cssText += "\n@import url(" + url + ");";
+        } catch (err) {
+        	global.console && console.warn(err + ': ' + url);
+        } finally {
+        	continue;
+        }
     	}
     }       
         
