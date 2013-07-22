@@ -122,11 +122,12 @@
 
       
       if (style.addEventListener) {
-      	function handle( function() {
+      	
+      	function handle() {
           style.removeEventListener(handle);
           
           handleOnLoad(style, callback, 20) // see above - try 20 times
-        });
+        }
         
         style.addEventListener('load', handle, false);
       } else {
@@ -135,8 +136,9 @@
           style.onload = null;
 
       	  handleOnLoad(style, callback, 20) // see above - try 20 times
+        }
       }
-
+      
     }
         
     var pending = len;
