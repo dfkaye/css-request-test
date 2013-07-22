@@ -124,7 +124,7 @@
       if (style.addEventListener) {
       	
       	function handle() {
-          style.removeEventListener(handle);
+          style.removeEventListener('load', handle, false);
           
           handleOnLoad(style, callback, 20) // see above - try 20 times
         }
