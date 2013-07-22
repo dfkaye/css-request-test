@@ -44,11 +44,11 @@
       console.dir(sheet.rules)
       console.dir(sheet.imports)
 
-      //cssRules = sheet.rules;
+      cssRules = sheet.rules;
       //length = cssRules.length;
       
       // 
-      cssRules = sheet.imports
+      //cssRules = sheet.imports
       length = cssRules.length
       
       message += '; MSIE'
