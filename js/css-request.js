@@ -33,7 +33,7 @@
     var cssRules;
     
     if (style.styleSheet) {
-      sheet = style.styleSheet
+      sheet = style.styleSheet // ie
       console.dir(sheet)
       
       cssRules = sheet.rules      
@@ -44,13 +44,11 @@
       console.log(length)
       
     } else if (style.sheet) {
-      sheet = style.sheet
+      sheet = style.sheet.ownerNode.sheet // firefox
       console.dir(sheet)
       cssRules = sheet.cssRules
       length = cssRules.length
-      
-      
-      
+
       // W3C
       console.log('W3C')
       console.log(cssRules.length)
