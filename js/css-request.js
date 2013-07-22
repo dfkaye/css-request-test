@@ -107,8 +107,7 @@
   
     style.setAttribute('type', 'text/css');
     style.setAttribute('media', 'all');
-
-		style.disabled = true;
+    style.disabled = true;
 		
     if (typeof callback === 'function') {
     	
@@ -144,7 +143,7 @@
         requested[url] = url;
         
         try {
-          cssText += "\n@import url(" + url + ");";        
+          cssText += "\n@import url('" + url + "');";        
         } catch (err) {
           global.console && console.warn(err + ': ' + url);
         } finally {
