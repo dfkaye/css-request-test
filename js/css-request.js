@@ -34,7 +34,7 @@
       found = (document.styleSheets[i] === (style.styleSheet || style.sheet))
     }
     
-    console.log('ss: ' + document.styleSheets.length + '; found at ' + i)
+    console.log('ss: ' + document.styleSheets.length + '; found? ' + found + ' at ' + i)
     
     var length;
     
