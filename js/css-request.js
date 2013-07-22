@@ -26,6 +26,35 @@
   
   var requested = {};
   
+  function handleOnLoad(style, callback) {
+    
+    style.onload = null;
+    
+    var length;
+    
+    if (style.styleSheet && !style.sheet) {
+      length = style.styleSheet.rules.length
+      // MSIE
+      console.log('MSIE')
+      console.log(style.styleSheet.rules.length)      
+    } else if (style.sheet) {
+      length = style.sheet.cssRules.length
+      // W3C
+      console.log('W3C')
+      console.log(style.sheet.cssRules.length)
+    }
+  
+    
+    if (length > 0) {
+      callback()
+    } else {
+      setTimeout(function() {
+        handleOnLoad(style, callback);
+      }, 250)
+    }
+  }  
+  
+  
   
   // TODO - SCAN FOR LINK AND STYLE TAGS ALREADY LOADED??  INEFFICIENT AT THIS POINT...
   
@@ -43,8 +72,8 @@
   
     var style = document.createElement('style');
   
-    style.setAttribute('type', 'text/css');
-    style.setAttribute('media', 'all');
+    //style.setAttribute('type', 'text/css');
+    //style.setAttribute('media', 'all');
   
     if (typeof callback === 'function') {
     	
@@ -56,32 +85,11 @@
        * BUT, style element fires load event!
        * AND, we can use multiple imports in a style to beat the IE restriction (no kidding!).
        */
-      style.onload = onload;
-      
-      function onload() {
-        
+      style.onload = function () {
         style.onload = null;
-        
-        var length;
-        
-        if (style.styleSheet && !style.sheet) {
-          length = style.styleSheet.rules.length
-          // MSIE
-          console.log('MSIE:' + style.styleSheet.rules.length)
-        } else if (style.sheet) {
-          length = style.sheet.cssRules.length
-          // W3C
-          console.log('W3C:' + style.sheet.cssRules.length)
-        }
-      
-        
-        if (length > 0) {
-          callback()
-        } else {
-          setTimeout(onload, 250)
-        }
-      }
-      
+
+      	handleOnLoad(style, callback) // see above
+      };
     }
         
     var pending = len;
