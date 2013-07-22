@@ -97,6 +97,11 @@
 		
     if (typeof callback === 'function') {
     	
+    	
+    	window.onreadystatechange = function (e) {
+    	console.log(window.readyState + '; ' + (e.target || e.srcElement)
+    	}
+    	
     	len = len - 1;
       
       /*
