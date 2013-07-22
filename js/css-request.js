@@ -27,13 +27,11 @@
   var requested = {};
   
   function handleOnLoad(style, callback, count) {
-    
-    style.onload = null;
-    
+        
     var length;
-      
     
     if (style.styleSheet) {
+      
       console.dir(style.styleSheet.rules)
       
       length = style.styleSheet.rules.length
@@ -42,6 +40,7 @@
       console.log(style.styleSheet.rules.length)
       
     } else if (style.sheet) {
+    	
       console.dir(style.sheet.cssRules)
       
       length = style.sheet.cssRules.length
@@ -55,9 +54,9 @@
     if (length > 0 && count > 0) {
       callback()
     } else {
-      count = count - 1;
+
       setTimeout(function() {
-        handleOnLoad(style, callback, count);
+        handleOnLoad(style, callback, count - 1);
       }, 250)
     }
   }  
