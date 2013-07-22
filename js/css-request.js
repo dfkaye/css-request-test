@@ -30,7 +30,6 @@
     
     var message = 'handleOnLoad ' + count;
 
-    
     var length;
     var sheet;
     var cssRules;
@@ -47,7 +46,6 @@
       cssRules = sheet.rules;
       //length = cssRules.length;
       
-      // 
       //cssRules = sheet.imports
       length = cssRules.length
       
@@ -74,9 +72,7 @@
     global.console && console.log(message);
 
     if (length > 0) {
-      
-      style.disabled = false;
-      
+            
       callback()
       
     } else if (sheet && count > 0) {
@@ -107,7 +103,6 @@
   
     style.setAttribute('type', 'text/css');
     style.setAttribute('media', 'all');
-    style.disabled = true;
 		
     if (typeof callback === 'function') {
     	
