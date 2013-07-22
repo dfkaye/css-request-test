@@ -47,11 +47,11 @@
       
     } else if (style.sheet) {
     	
-      sheet = style.sheet.ownerNode.sheet // firefox
+      sheet = style.sheet;
       
       console.dir(sheet)
       
-      cssRules = sheet.cssRules
+      cssRules = sheet.cssRules || '' // firefox bonk out
       length = cssRules.length
 
       // W3C
