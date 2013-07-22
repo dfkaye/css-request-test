@@ -6,10 +6,6 @@
       body {
         margin: 5% 10%;
       }
-      .test {
-        background-color: #000;
-        color: #fff;
-      }
     </style>
     <script src='./js/css-request.js'></script>
   </head>
@@ -28,7 +24,7 @@
       [https://github.com/dfkaye/css-request-test/]
       (https://github.com/dfkaye/css-request-test/l)
     </p>    
-    <div id='test' class='test sleepcgi'>sleepcgi</div>
+    <div class='sleepcgi'>sleepcgi div gets restyled eventually</div>
     <script>
       requestCss('http://1.cuzillion.com/bin/resource.cgi?type=css&sleep=10&n=1&t='+ (+new Date()), function () {
   console.log('DONE - sheet 1', arguments);
