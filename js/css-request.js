@@ -38,8 +38,8 @@
       // MSIE
       sheet = style.styleSheet;
       
-      console.dir(sheet.rules)
-      console.dir(sheet.imports)
+      //console.dir(sheet.rules)
+      //console.dir(sheet.imports)
 
       //cssRules = sheet.rules;
       cssRules = sheet.imports
@@ -50,7 +50,7 @@
     	
       sheet = style.sheet;
       
-      console.dir(sheet)
+      //console.dir(sheet)
       
       try {
         cssRules = sheet.cssRules;
