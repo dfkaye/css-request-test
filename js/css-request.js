@@ -38,7 +38,7 @@
       // MSIE
       sheet = style.styleSheet;
       
-      console.dir(sheet)
+      //console.dir(sheet)
       
       //cssRules = sheet.rules;
       //length = cssRules.length;
@@ -51,7 +51,7 @@
     	
       sheet = style.sheet;
       
-      console.dir(sheet)
+      //console.dir(sheet)
       
       try {
         cssRules = sheet.cssRules;
