@@ -34,12 +34,14 @@
     
     
     if (style.styleSheet) {
+      
       // MSIE
-      sheet = style.styleSheet; // ie
-      cssRules = sheet.rules;
+      sheet = style.styleSheet;
       
       console.dir(sheet)
       
+      cssRules = sheet.rules;
+
       length = cssRules.length;
       
     } else if (style.sheet) {
@@ -51,7 +53,7 @@
       try {
         cssRules = sheet.cssRules;
       } catch(err) {
-        cssRules = '';// firefox bonk out
+        cssRules = ''; // firefox bonk out
       }
       
       length = cssRules.length
