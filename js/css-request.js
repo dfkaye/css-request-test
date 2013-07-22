@@ -93,8 +93,8 @@
   
     var style = document.createElement('style');
   
-    //style.setAttribute('type', 'text/css');
-    //style.setAttribute('media', 'all');
+    style.setAttribute('type', 'text/css');
+    style.setAttribute('media', 'all');
   
     if (typeof callback === 'function') {
     	
