@@ -38,6 +38,8 @@
 	 */
 	function requestCss() {
 
+    var ruleCount = 0;
+    
   	var args = arguments;
 	  var len = args.length;
 	  var callback = args[len - 1];
@@ -56,9 +58,28 @@
        * BUT, style element fires load event!
        * AND, we can use multiple imports in a style to beat the IE restriction (no kidding!).
        */
-      style.onload = function () {
+      style.onload = onload;
+      function onload() {
         style.onload = null;
-        callback();
+        
+        var sheet = style.styleSheet || style.sheet
+        var cssRules = sheet.rules || sheet.cssRules
+        
+        if (style.styleSheet) {
+          // MSIE
+          console.log('MSIE:' + cssRules.length)
+        } else if (style.sheet) {
+          // W3C
+          console.log('W3C:' + cssRules.length)
+        }
+
+        
+        if (cssRules.length > 0) {
+          callback()
+        } else {
+          
+          setTimeout(onload, 100)
+        }
       };
       
     }
