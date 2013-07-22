@@ -26,16 +26,15 @@
   
   var requested = {};
   
-  function handleOnLoad(style, callback) {
+  function handleOnLoad(style, callback, count) {
     
     style.onload = null;
     
     var length;
-    
-    
+      
     
     if (style.styleSheet) {
-      console.dir(style.styleSheet)
+      console.dir(style.styleSheet.imports)
       
       length = style.styleSheet.rules.length
       // MSIE
@@ -43,7 +42,7 @@
       //console.log(style.styleSheet.rules.length)
       
     } else if (style.sheet) {
-      console.dir(style.sheet)
+      console.dir(style.sheet.cssRules)
       
       length = style.sheet.cssRules.length
       
@@ -53,13 +52,14 @@
     }
   
     
-    //if (length > 0) {
+    if (length > 0 && count > 0) {
       callback()
-    //} else {
-    //  setTimeout(function() {
-    //    handleOnLoad(style, callback);
-    //  }, 250)
-    //}
+    } else {
+      count = count - 1;
+      setTimeout(function() {
+        handleOnLoad(style, callback, count);
+      }, 250)
+    }
   }  
   
   
@@ -96,7 +96,7 @@
       style.onload = function () {
         style.onload = null;
 
-      	handleOnLoad(style, callback) // see above
+      	handleOnLoad(style, callback, 20) // see above - try 20 times
       };
     }
         
