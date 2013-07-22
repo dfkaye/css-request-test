@@ -29,11 +29,9 @@
   function handleOnLoad(style, callback, count) {
     
     var message = 'handleOnLoad ' + count;
-
     var length;
     var sheet;
     var cssRules;
-    
     
     if (style.styleSheet) {
       
@@ -44,12 +42,9 @@
       console.dir(sheet.imports)
 
       cssRules = sheet.rules;
-      //length = cssRules.length;
-      
       //cssRules = sheet.imports
-      length = cssRules.length
-      
-      message += '; MSIE'
+      length = cssRules.length;
+      message += '; MSIE; ' + document.styleSheets.length
 
     } else if (style.sheet) {
     	
@@ -64,10 +59,8 @@
       }
       
       length = cssRules.length
-      
-      message += '; W3C'
+      message += '; W3C; ' + document.styleSheets.length
     }
-
 
     global.console && console.log(message);
 
@@ -79,7 +72,7 @@
 
       setTimeout(function() {
         handleOnLoad(style, callback, count - 1);
-      }, 2000) // two whole seconds for cuzillion
+      }, 1000) // cuzillion
     }
   }  
   
@@ -120,16 +113,15 @@
       	
       	function handle() {
           style.removeEventListener('load', handle, false);
-          
           handleOnLoad(style, callback, 20) // see above - try 20 times
         }
         
         style.addEventListener('load', handle, false);
+        
       } else {
       	
         style.onload = function () {
           style.onload = null;
-
       	  handleOnLoad(style, callback, 20) // see above - try 20 times
         }
       }
@@ -166,15 +158,14 @@
     // try not to block other processes
     setTimeout(function () {
     	
-    	if (style.styleSheet) {
-    	  // internet explorer
-          style.styleSheet.cssText = cssText;
-    	} else {
-          // most dom compliant browsers
-          style.appendChild(document.createTextNode(cssText));
-    	}
-    	
-    }, 25);
+      if (style.styleSheet) {
+        // internet explorer
+        style.styleSheet.cssText = cssText;
+      } else {
+        // most dom compliant browsers
+        style.appendChild(document.createTextNode(cssText));
+      }
+    }, 0);
 
   }
   
