@@ -124,6 +124,22 @@
 
       	handleOnLoad(style, callback, 20) // see above - try 20 times
       };
+      
+      if (style.addEventListener) {
+        style.addEventListener('load', function() {
+    
+          handleOnLoad(style, callback, 20) // see above - try 20 times
+        }, false);
+      }
+      
+      style.onreadystatechange = function() {
+        var state = style.readyState;
+        if (state === 'loaded' || state === 'complete') {
+          style.onreadystatechange = null;
+          handleOnLoad(style, callback, 20) // see above - try 20 times
+        }
+      };
+
     }
         
     var pending = len;
