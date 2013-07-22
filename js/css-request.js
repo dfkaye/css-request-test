@@ -45,7 +45,7 @@
       
     } else if (style.sheet) {
       sheet = style.sheet.ownerNode.sheet // firefox
-      console.dir(sheet)
+      console.log(sheet)
       cssRules = sheet.cssRules
       length = cssRules.length
 
