@@ -34,12 +34,12 @@
       
     
     if (style.styleSheet) {
-      console.dir(style.styleSheet.imports)
+      console.dir(style.styleSheet.rules)
       
       length = style.styleSheet.rules.length
       // MSIE
-      //console.log('MSIE')
-      //console.log(style.styleSheet.rules.length)
+      console.log('MSIE')
+      console.log(style.styleSheet.rules.length)
       
     } else if (style.sheet) {
       console.dir(style.sheet.cssRules)
@@ -47,8 +47,8 @@
       length = style.sheet.cssRules.length
       
       // W3C
-      //console.log('W3C')
-      //console.log(style.sheet.cssRules.length)
+      console.log('W3C')
+      console.log(style.sheet.cssRules.length)
     }
   
     
@@ -136,9 +136,7 @@
     	} else {
         // most dom compliant browsers
         style.appendChild(document.createTextNode(cssText));
-        
     	}
-    	
     }, 25);
   	
   }
