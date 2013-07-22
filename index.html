@@ -2,8 +2,19 @@
 <html>
   <head>
     <title>css-request-test</title>
+    <style>
+      .test {
+        background-color: #000;
+        color: #fff;
+      }
+    </style>
+    <script src='./js/css-request.js'></script>
   </head>
   <body>
-  
+    <p>
+      attempts to show that loading css via javascript can circumvent the Internet Explorer limit
+      on number of link tags and/or @import url directives per stylesheet and in aggregate.
+    </p>
+    <div id='test' class='test'>test</div>
   </body>
 </html>
