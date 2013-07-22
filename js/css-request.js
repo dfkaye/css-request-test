@@ -41,10 +41,10 @@
       console.dir(sheet.rules)
       console.dir(sheet.imports)
 
-      cssRules = sheet.rules;
-      //cssRules = sheet.imports
+      //cssRules = sheet.rules;
+      cssRules = sheet.imports
       length = cssRules.length;
-      message += '; MSIE; ' + document.styleSheets.length
+      message += '; MSIE; ' + length
 
     } else if (style.sheet) {
     	
@@ -59,7 +59,7 @@
       }
       
       length = cssRules.length
-      message += '; W3C; ' + document.styleSheets.length
+      message += '; W3C; ' + length
     }
 
     global.console && console.log(message);
@@ -122,7 +122,7 @@
         
         style.onreadystatechange = function () {
           if (style.readyState == 'loaded' || style.readyState == 'complete') {
-        	  style.onreadystatechange = null;
+            style.onreadystatechange = null;
             handleOnLoad(style, callback, 20) // see above - try 20 times
           }
         }
