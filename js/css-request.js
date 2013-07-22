@@ -71,7 +71,7 @@
 
       setTimeout(function() {
         handleOnLoad(style, callback, count - 1);
-      }, 250)
+      }, 1000)
     }
   }  
   
@@ -140,18 +140,18 @@
     	}
     }
     
-		// try not to block other processes
-		setTimeout(function () {
-			
-			if (style.styleSheet) {
-				// internet explorer
-				style.styleSheet.cssText = cssText;
-			} else {
-				// most dom compliant browsers
-			    style.appendChild(document.createTextNode(cssText));
-			}
-			
-		}, 0);    
+    // try not to block other processes
+    setTimeout(function () {
+    	
+    	if (style.styleSheet) {
+    		// internet explorer
+    		style.styleSheet.cssText = cssText;
+    	} else {
+    		// most dom compliant browsers
+    	    style.appendChild(document.createTextNode(cssText));
+    	}
+    	
+    }, 0);
 
   }
   
