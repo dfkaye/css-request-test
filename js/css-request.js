@@ -32,6 +32,10 @@
     var sheet;
     var cssRules;
     
+          console.log('style tag');
+          cosole.log(style)
+
+    
     if (style.styleSheet) {
       sheet = style.styleSheet // ie
       console.dir(sheet)
@@ -44,7 +48,9 @@
       console.log(length)
       
     } else if (style.sheet) {
+    	
       sheet = style.sheet.ownerNode.sheet // firefox
+      
       console.log(style)
       cssRules = sheet.cssRules
       length = cssRules.length
