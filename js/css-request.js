@@ -56,9 +56,10 @@
     }
   
     
-    if (length > 0 && count > 0) {
+    if (length > 0) {
       callback()
-    } else if (sheet) {
+      
+    } else if (sheet&& count > 0) {
 
       setTimeout(function() {
         handleOnLoad(style, callback, count - 1);
