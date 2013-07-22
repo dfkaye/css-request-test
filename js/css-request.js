@@ -28,7 +28,13 @@
   
   function handleOnLoad(style, callback, count) {
     
-    console.log('ss: ' + document.styleSheets.length)
+    var i = document.styleSheets.length;
+    var found = false;
+    while (i-- && !found) {
+      found = document.styleSheets[i] === style
+    }
+    
+    console.log('ss: ' + document.styleSheets.length + '; found at ' + i)
     
     var length;
     
