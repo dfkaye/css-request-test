@@ -39,11 +39,14 @@
       cssRules = sheet.rules;
       
       console.dir(sheet)
+      
       length = cssRules.length;
       
     } else if (style.sheet) {
     	
       sheet = style.sheet;
+      
+      console.dir(sheet)
       
       try {
         cssRules = sheet.cssRules;
