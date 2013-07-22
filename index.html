@@ -26,10 +26,10 @@
     </p>    
     <div class='sleepcgi'>sleepcgi div gets restyled eventually</div>
     <script>
-      requestCss('http://1.cuzillion.com/bin/resource.cgi?type=css&sleep=10&n=1&t='+ (+new Date()), function () {
+      requestCss('http://1.cuzillion.com/bin/resource.cgi?type=css&sleep=1&n=1&t='+ (+new Date()), function () {
         console.log('DONE - sheet 1', arguments);
       });
-      requestCss('http://2.cuzillion.com/bin/resource.cgi?type=css&sleep=10&n=2&t='+ (+new Date()), function () {
+      requestCss('http://2.cuzillion.com/bin/resource.cgi?type=css&sleep=1&n=2&t='+ (+new Date()), function () {
         console.log('DONE - sheet 2', arguments);
       });
     </script>
