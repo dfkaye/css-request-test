@@ -35,6 +35,7 @@
     console.dir(style)
     
     if (style.styleSheet) {
+    	
       length = style.styleSheet.rules.length
       // MSIE
       console.log('MSIE')
@@ -49,13 +50,13 @@
     }
   
     
-    if (length > 0) {
+    //if (length > 0) {
       callback()
-    } else {
-      setTimeout(function() {
-        handleOnLoad(style, callback);
-      }, 250)
-    }
+    //} else {
+    //  setTimeout(function() {
+    //    handleOnLoad(style, callback);
+    //  }, 250)
+    //}
   }  
   
   
