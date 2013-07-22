@@ -118,6 +118,13 @@
         
         style.addEventListener('load', handle, false);
         
+      } else if (style.onreadystatechange) {
+        
+        if (style.readyState == 'loaded' || style.readyState == 'complete')
+      	  style.onreadystatechange = null;
+          handleOnLoad(style, callback, 20) // see above - try 20 times
+        }
+                
       } else {
       	
         style.onload = function () {
