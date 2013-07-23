@@ -7,14 +7,14 @@ experimental html &amp; js for loading css stylesheets dynamically
 motivation
 ----------
 
-# 3rdeden tweet
-# stoyan's blog
++ 3rdeden tweet
++ stoyan's blog
 
 working examples
 ----------------
 
-# rawgithub to link strategy
-# rawgithub link to ie fallback style/imports strategy
++ rawgithub to link strategy
++ rawgithub link to ie fallback style/imports strategy
 
 a word or two about the fallback strategy
 -----------------------------------------
