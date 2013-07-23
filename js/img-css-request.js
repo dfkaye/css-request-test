@@ -40,7 +40,8 @@
           
           var img = new Image();
           
-          requested[url] = img;
+          requests[url] = img;
+          
           img.onload = function () {
             console.log(uri + ' is loaded');
             console.log(img)
