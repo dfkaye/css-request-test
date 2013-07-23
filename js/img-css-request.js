@@ -45,7 +45,7 @@
           
           requests[url] = url;
           img.src = url;
-          img.onload = function () {
+          img.onload = img.onerror = function () {
             
             //console.log(url + ' is loaded');
             console.log('loaded')
