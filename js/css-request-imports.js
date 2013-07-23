@@ -68,8 +68,8 @@ window.onload = function() {
         requests[url] = url;
         
         try {
-          //cssText += "\n@import url('" + url + "');";
-          style.styleSheet.addImport(url);
+          cssText += "\n@import url('" + url + "');";
+          //style.styleSheet.addImport(url);
         } catch (err) {
           global.console && console.warn(err + ': ' + url);
 
@@ -80,7 +80,7 @@ window.onload = function() {
         } 
       }
     }
-
+    style.styleSheet.cssText = cssText;
     return requests;
   }
   
