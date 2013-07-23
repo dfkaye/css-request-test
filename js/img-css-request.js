@@ -39,7 +39,7 @@ function loadCss(request) {
     var cssText = "\n@import url('" + url + "');";
     var style = styleTags[styleTags.length - 1];
     
-    if (!style || (style.styleSheet || style.sheet).cssText.match(/\@import url/g).length > 31) {
+    if (!style || (style.styleSheet && style.styleSheet.rules.length > 31)) {
       
       style = document.createElement('style');
       
@@ -52,7 +52,7 @@ function loadCss(request) {
       // borks out otherwise
       document.getElementsByTagName('head')[0].appendChild(style);      
     }
-    
+
     if (style.addEventListener) {
       
       console.log('addEventListener')
