@@ -49,7 +49,7 @@
       
     } else {
       
-    	console.log('using onload')
+      console.log('using onload')
 
       var onload = link.onload;
       
@@ -59,7 +59,7 @@
         } catch (err) {
           
         } finally {
-    	    callback();
+          callback();
         }
       }
     }
