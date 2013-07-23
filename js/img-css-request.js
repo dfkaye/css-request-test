@@ -13,12 +13,13 @@
             
     if (typeof url == 'string' && !(url in requests)) {
           
-      var img = new Image();
+      //var img = new Image();
       
-      requests[url] = img.src = url;
-      img.onload = img.onerror = function () {
+      requests[url] = url;
+      //requests[url] = img.src = url;
+      //img.onload = img.onerror = function () {
          loadCss(url, callback);
-      }
+      //}
     }
   }
 
