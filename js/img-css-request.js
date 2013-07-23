@@ -103,8 +103,8 @@
       //console.dir(sheet.rules)
       //console.dir(sheet.imports)
 
-      //cssRules = style.styleSheet.imports;
-      cssRules = style.styleSheet.rules
+      cssRules = style.styleSheet.imports;
+      //cssRules = style.styleSheet.rules
       length = cssRules.length;
       message += '; MSIE; ' + length
 
