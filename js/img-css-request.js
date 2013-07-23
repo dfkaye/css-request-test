@@ -15,15 +15,11 @@
     var cssText = '';
             
     if (typeof url == 'string' && !(url in requests)) {
-      
-      var img = new Image();
+          
       var request = {url: url, callback: callback};
       
       requests[url] = request;
-      img.src = url;
-      img.onload = img.onerror = function () {
-        loadCss(request);
-      }
+      loadCss(request);
     }
     
   }
@@ -33,8 +29,7 @@
     var url = request.url;
     
     //console.log(url + ' is loaded');
-    console.log('loaded ' + request.url)
-    
+    console.log('loadCss ' + request.url)
     
     var cssText = "\n@import url('" + url + "');";
     var style = styleTags[styleTags.length - 1];
@@ -101,7 +96,7 @@
     var cssRules;
     var length;
 
-    if (style.styleSheet && style.styleSheet.rules) {
+    if (style.styleSheet && style.styleSheet.imports) {
       
       // MSIE
       
@@ -113,11 +108,18 @@
       length = cssRules.length;
       message += '; MSIE; ' + length
 
-    } else if (style.sheet && style.sheet.cssRules) {
+    } else if (style.sheet) {
             
       //console.dir(style.sheet)
       
-      cssRules = style.sheet.cssRules;    
+      //cssRules = style.sheet.cssRules;
+      
+      try {
+        cssRules = style.sheet.cssRules;
+      } catch(err) {
+        cssRules = ''; // x-domain firefox crap
+      }
+      
       length = cssRules.length
       message += '; W3C; ' + length
     } else {
@@ -128,8 +130,12 @@
     !!console && console.log(message + '; ' + length);
 
     if (length > 0) {
-            
-      typeof callback != 'function' || (callback())
+      
+      var img = new Image();
+      img.src = url;
+      img.onload = img.onerror = function () {
+         typeof callback != 'function' || (callback())
+      }
       
     } else if (count > 0) {
 
