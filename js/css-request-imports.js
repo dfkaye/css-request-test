@@ -45,7 +45,7 @@ window.onload = function() {
       style.onload = function onStyleLoad() {
         
         pending -= 1;
-        document.getElementById('sleepcgi-test').innerHTML += '<br/>' + pending;
+        document.getElementById('sleepcgi-test').innerHTML += '<br/>' + style.styleSheet.imports.length;
         if (pending < 1) {
           callback();
         }
