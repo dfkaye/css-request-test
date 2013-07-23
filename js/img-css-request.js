@@ -38,9 +38,9 @@
 
     if (link.addEventListener) {
       
-      console.log('using addEventListener')
+      console.log('using addEventListener');
       
-    	function handle() {
+      function handle() {
         link.removeEventListener('load', handle, false);
         callback();
       }
