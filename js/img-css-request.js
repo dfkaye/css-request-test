@@ -49,18 +49,29 @@
   
   function loadCss(url) {
     
+    var cssText = "\n@import url('" + url + "');";
     var style = styleTags[styleTags.length - 1];
     
-    if (!style) { 
+    if (!style) {
+      
       style = document.createElement('style');
       style.setAttribute('type', 'text/css');
       //style.setAttribute('media', 'all');
       styleTags.push(style);
+      
+      // append the element right away so that the import directive runs on an active element
+      // borks out otherwise
+      document.getElementsByTagName('head')[0].appendChild(style);      
+    }
+            
+    if (style.styleSheet) {
+      // internet explorer
+      style.styleSheet.cssText += cssText;
+    } else {
+      // most dom compliant browsers
+      style.appendChild(document.createTextNode(cssText));
     }
     
-    var sheet = style.styleSheet ? style.styleSheet : style.sheet;
-    
-    console.log(url, sheet);
     
   }
   
