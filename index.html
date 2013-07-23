@@ -18,15 +18,17 @@
   </head>
   <body>
     <p>
-      <del>
-        Page attempts to show that loading css via javascript can circumvent the Internet Explorer limit
+      Page attempts to show that loading css via javascript can be managed by events cross-browser,
+      (for W3C conformant browsers), and that we can circumvent the Internet Explorer limit
       on number of link tags and/or @import url directives per stylesheet and in aggregate.
-      </del>
-      IE limit not solved here... yet.
     </p>
     <p>
-      Page attempts to show that loading css via javascript can be managed by event callbacks using the img 
-      prefecth trick.  Page uses script at https://github.com/dfkaye/css-request-test/js/img-css-request.js
+      For IE 9,8,7... browsers (IE10, the rest), page uses style tag strategy with imports directives -
+      the script is at https://github.com/dfkaye/css-request-test/js/css-request-imports.js
+    </p>    
+    <p>
+      For W3C conformant browsers (IE10, the rest), page uses link tag strategy - script at 
+      https://github.com/dfkaye/css-request-test/js/css-request.js
     </p>
     <p>
       view this page in the raw at 
