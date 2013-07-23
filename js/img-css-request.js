@@ -39,7 +39,7 @@ function loadCss(request) {
     var cssText = "\n@import url('" + url + "');";
     var style = styleTags[styleTags.length - 1];
     
-    if (!style) {
+    if (!style || style.cssText.match(/\@import url/g).length > 31) {
       
       style = document.createElement('style');
       
