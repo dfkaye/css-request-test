@@ -8,8 +8,9 @@
  *   - http://www.phpied.com/when-is-a-stylesheet-really-loaded/
  *   - http://www.zachleat.com/web/load-css-dynamically/
  *
- * IE 9 and down to get around the total stylesheet, imports and css rules limits 
- * wisely imposed by Microsoft's developers.
+ * Uses style element with @import directive strategy for IE 9 and down to get around 
+ * the total stylesheet, imports and css rules limits wisely imposed by Microsoft's 
+ * developers.
  */
  
 ;(function () {
