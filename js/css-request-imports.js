@@ -5,7 +5,7 @@
  
 ;(function () {
 
-  alert('testing: should be IE 9 or less');
+  document.getElementById('sleepcgi-test').innerHTML += '<br/>testing: should be IE 9 or less';
   /* public */
    
   window.requestCss = importCss;
