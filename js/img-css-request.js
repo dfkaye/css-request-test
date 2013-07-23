@@ -6,48 +6,32 @@
   window.requestCss = requestCss;
   
   /*
-   * param - any number of string arguments to css filepaths
+   * param url - string url to css filepaths
    * 
    * callback - last argument must be a function
    */
-  function requestCss() {
-  
-    var args = arguments;
-    var len = args.length;
-    var callback = args[len - 1];
-    var pending = len;
+  function requestCss(url, callback) {
+
     var cssText = '';
-    var url;
-    
-    if (typeof callback === 'function') {
-    
-      len = len - 1;
-
-      for (var i = 0, img; i < len; i++) {
-        
-        url = args[i];
-        
-        if (typeof url == 'string' && !(url in requests)) {
-          
-          var img = new Image();
-          
-          requests[url] = url;
-          img.src = url;
-          img.onload = img.onerror = function () {
             
-            //console.log(url + ' is loaded');
-            console.log('loaded ' + url)
-            loadCss(url, callback);
-          }
-          
-
-        }
+    if (typeof url == 'string' && !(url in requests)) {
+      
+      var img = new Image();
+      
+      requests[url] = url;
+      img.src = url;
+      img.onload = img.onerror = function () {
+        
+        //console.log(url + ' is loaded');
+        console.log('loaded ' + url)
+        loadCss(url, callback);
       }
+
     }
     
   }
-  
-  function loadCss(url, callback) {
+
+function loadCss(url, callback) {
     
     var cssText = "\n@import url('" + url + "');";
     var style = styleTags[styleTags.length - 1];
@@ -135,12 +119,14 @@
 
     if (length > 0) {
             
-      callback()
+      typeof callback != 'function' || (callback())
       
     } else if (count > 0) {
 
       setTimeout(function() {
+        
         handleOnLoad(style, callback, count - 1);
+        
       }, 1000) // cuzillion
     }
   }
