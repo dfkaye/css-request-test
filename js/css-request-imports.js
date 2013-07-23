@@ -15,6 +15,7 @@ window.onload = function() {
   
   var requests = {};
   var styleTags = [];
+  var callbacks = [];
   
   /* public */
    
@@ -30,8 +31,6 @@ window.onload = function() {
     var args = arguments;
     var len = args.length;
     var callback = args[len - 1];
-    var pending = len;
-    var cssText = '';
     var url;
     var style = styleTags[styleTags.length - 1];
     
@@ -42,19 +41,9 @@ window.onload = function() {
 
       style.setAttribute('type', 'text/css');
       //style.setAttribute('media', 'all');
-      
-      var onload = style.onload;
-      
-      style.onload = function (e) {
-        document.getElementById('sleepcgi-test').innerHTML += '<br/>' + e;
-        try {
-          onload();
-        } catch (err) {
-         
-        } finally {
-          callback();
-        }
-        
+          
+      style.onload = function () {
+        handleCallbacks();
       };
      
       styleTags.push(style);
@@ -64,7 +53,8 @@ window.onload = function() {
       document.getElementsByTagName('head')[0].appendChild(style);
     }
     
-
+    callbacks.push(callback);
+    
     for (var i = 0; i < len; i++) {
      
       url = args[i];
@@ -78,9 +68,6 @@ window.onload = function() {
           style.styleSheet.addImport(url);
         } catch (err) {
           global.console && console.warn(err + ': ' + url);
-
-          pending -= 1;
-
         } finally {
           continue;
         } 
@@ -93,6 +80,14 @@ window.onload = function() {
   function newStyle() {
    
     return style;
+  }
+  
+  function handleCallbacks() {
+    var callback;
+    while (callbacks[0]) {
+      callback = callbacks.shift();
+      callback();
+    }
   }
 
 }());
