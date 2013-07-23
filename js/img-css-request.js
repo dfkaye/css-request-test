@@ -70,15 +70,15 @@
         //handleOnLoad(style, request, 500) // see above - try 20 times
       }
       
-      style.addEventListener('load', handle, false);
+      link.addEventListener('load', handle, false);
       
     } else {
       
     	console.log('onload')
 
-      var onload = style.onload;
+      var onload = link.onload;
       
-      style.onload = function () {
+      link.onload = function () {
         //style.onload = null;
         try {
           onload();
