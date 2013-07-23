@@ -34,24 +34,21 @@
     if (style.styleSheet) {
       
       // MSIE
-      sheet = style.styleSheet;
       
       //console.dir(sheet.rules)
       //console.dir(sheet.imports)
 
-      //cssRules = sheet.rules;
-      cssRules = sheet.imports
+      //cssRules = style.styleSheet.rules;
+      cssRules = style.styleSheet.imports
       length = cssRules.length;
       message += '; MSIE; ' + length
 
     } else if (style.sheet) {
-    	
-      sheet = style.sheet;
-      
-      //console.dir(sheet)
+    	      
+      //console.dir(style.sheet)
       
       try {
-        cssRules = sheet.cssRules;
+        cssRules = style.sheet.cssRules;
       } catch(err) {
         cssRules = ''; // firefox bonk out
       }
@@ -69,7 +66,7 @@
             
       callback()
       
-    } else if (sheet && count > 0) {
+    } else if (count > 0) {
 
       setTimeout(function() {
         handleOnLoad(style, callback, count - 1);
@@ -98,7 +95,7 @@
     style.setAttribute('type', 'text/css');
     //style.setAttribute('media', 'all');
     
-    var sheet = style.styleSheet || style.sheet;
+    var sheet = style.styleSheet ? style.styleSheet : (style.sheet || style);
 		
     if (typeof callback === 'function') {
     	
