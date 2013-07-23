@@ -1,29 +1,43 @@
 css-request-test
 ================
 
-experimental html &amp; js for loading css stylesheets dynamically
-
+experimental html &amp; js for loading css stylesheets dynamically.
 
 motivation
 ----------
 
-+ 3rdeden tweet
-+ stoyan's blog
+Read these if you're unfamiliar with the problem:
 
-working examples
-----------------
++ @3rdeden tweet [You don&#39;t understand cross browser pain until&hellip;](https://twitter.com/3rdEden/statuses/358669103973675009)
++ Stoyan's blog [When is a stylesheet really loaded?](http://www.phpied.com/when-is-a-stylesheet-really-loaded/)
++ John Albin's blog [31 reasons to hate IE&hellip;](http://john.albin.net/css/ie-stylesheets-not-loading)
++ Microsoft&#39;s removal of this limit [starting in IE10](http://msdn.microsoft.com/en-us/library/ie/hh920762(v=vs.85).aspx)
 
-+ rawgithub to link strategy
-+ rawgithub link to ie fallback style/imports strategy
+working example
+---------------
 
-a word or two about the fallback strategy
------------------------------------------
++ View the working [test page](http://rawgithub.com/dfkaye/css-request-test/master/index.html)
 
-Microsoft's developers are telling you something important when you they limit 
-your stylesheet payload to 32 or 255 or whatever - you're overloading your document with crap,
-and probably un-setting a lot of css rules you already worked hard to get right the first time.
+a word or two about Microsoft limit strategy
+--------------------------------------------
 
-Better to reduce your ruleset than complain about MSIE.  CODE IS NOT ART, GET OVER IT (spoken with
+As painful as it is to be unable to load more than 971 stylesheets, Microsoft's developers are 
+actually telling us something important when they limit the stylesheet payload to 32 or 255 or 
+whatever - that means overloading the document with crap, and probably un-setting a lot of css 
+rules already labored over with dedication to get right the first time.
+
+Better to reduce the ruleset than complain about MSIE.  CODE IS NOT ART, GET OVER IT (spoken with
 love and compassion, of course).
 
-imports strategy appears to block rendering.
+verify next
+-----------
+
+The bulk imports strategy appears to block rendering.
+
+TODO
+----
+
+add arbitrary urls to requestCss(urls..., callback) and respond with single callback
+throw errors for malformed argument types
+
+More to come&hellip;
