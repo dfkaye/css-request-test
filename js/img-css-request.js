@@ -18,20 +18,25 @@
       
       var img = new Image();
       
-      requests[url] = url;
+      requests[url] = {url: url, callback: callback};
       img.src = url;
       img.onload = img.onerror = function () {
-        
-        //console.log(url + ' is loaded');
-        console.log('loaded ' + url)
-        loadCss(url, callback);
+        loadCss(requests[url]);
       }
 
     }
     
   }
 
-function loadCss(url, callback) {
+function loadCss(request) {
+        
+
+    
+    var url = request.url;
+    
+    //console.log(url + ' is loaded');
+    console.log('loaded ' + request.url)
+    
     
     var cssText = "\n@import url('" + url + "');";
     var style = styleTags[styleTags.length - 1];
@@ -44,20 +49,23 @@ function loadCss(url, callback) {
       //style.setAttribute('media', 'all');
       
       if (style.addEventListener) {
+        
         console.log('addEventListener')
       	
       	function handle() {
           //sheet.removeEventListener('load', handle, false);
-          handleOnLoad(style, callback, 20) // see above - try 20 times
+          handleOnLoad(style, request, 20) // see above - try 20 times
         }
         
         style.addEventListener('load', handle, false);
+        
       } else {
+        
       	console.log('onload')
 
         style.onload = function () {
           //style.onload = null;
-      	  handleOnLoad(style, callback, 20) // see above - try 20 times
+      	  handleOnLoad(style, request, 20) // see above - try 20 times
         }
         
       }
@@ -79,8 +87,9 @@ function loadCss(url, callback) {
 
   }
   
-  function handleOnLoad(style, callback, count) {
-    
+  function handleOnLoad(style, request, count) {
+    var url = request.url;
+    var callback = request.callback;
     var message = 'handleOnLoad ' + count;
     var length;
     var sheet;
@@ -115,7 +124,7 @@ function loadCss(url, callback) {
     	message += "; don't know what's going on"
     }
 
-    !!console && console.log(message + '; ' + document.readyState);
+    !!console && console.log(message + '; ' + style.readyState);
 
     if (length > 0) {
             
@@ -125,7 +134,7 @@ function loadCss(url, callback) {
 
       setTimeout(function() {
         
-        handleOnLoad(style, callback, count - 1);
+        handleOnLoad(style, url, count - 1);
         
       }, 1000) // cuzillion
     }
