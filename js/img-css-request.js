@@ -70,9 +70,11 @@
 
       var onload = style.onload;
       
+      console.log(typeof onload)
       style.onload = function () {
         //style.onload = null;
-        onload();
+        typeof onload != 'function' || (onload());
+        
     	  handleOnLoad(style, request, 20) // see above - try 20 times
       }
       
