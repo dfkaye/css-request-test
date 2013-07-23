@@ -39,6 +39,7 @@ window.onload = function() {
 
       style.setAttribute('type', 'text/css');
       //style.setAttribute('media', 'all');
+      
       var onload = style.onload;
       
       style.onload = function () {
@@ -79,18 +80,31 @@ window.onload = function() {
         requests[url] = url;
         
         try {
-          //cssText += "\n@import url('" + url + "');";
-          style.styleSheet.addImport(url);
+          cssText += "\n@import url('" + url + "');";
+          //style.styleSheet.addImport(url);
         } catch (err) {
           global.console && console.warn(err + ': ' + url);
 
-          pending -= 1;
+          //pending -= 1;
 
         } finally {
           continue;
         } 
       }
     }
+    
+    // try not to block other processes
+    setTimeout(function () {
+     
+      if (style.styleSheet) {
+        // internet explorer
+        style.styleSheet.cssText = cssText;
+      } else {
+        // most dom compliant browsers
+        style.appendChild(document.createTextNode(cssText));
+      }
+      
+    }, 0);
 
   }
 
