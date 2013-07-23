@@ -44,15 +44,15 @@
           var img = new Image();
           
           requests[url] = url;
-          
+          img.src = url;
           img.onload = function () {
             
-            console.log(url + ' is loaded');
-            console.log(img)
+            //console.log(url + ' is loaded');
+            console.log('loaded')
             
           }
           
-          img.src = url;
+
         }
       }
     }
