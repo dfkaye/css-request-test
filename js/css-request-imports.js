@@ -40,27 +40,41 @@ window.onload = function() {
       style.setAttribute('type', 'text/css');
       //style.setAttribute('media', 'all');
       
-      var onload = style.onload;
       
-      style.onload = function () {
-
-        pending -= 1;
-
-        try {
-          
-          onload();
-          
-        } catch(err) {
-
-        } finally {
-          
-          if (pending < 1) {
+      if (style.onreadystatechange) {
+       
+        style.onreadystatechange = function () {
+          if (style.readyState == 'loaded' || style.readyState == 'complete') {
             
-            callback();
+            //handleOnLoad(style, callback, 20) // see above - try 20 times
+            
+            pending -= 1;
+            if (pending < 1) {
+              style.onreadystatechange = null;
+              callback();
+            }             
           }
-          
         }
-      };
+        
+      } else {
+        
+        var onload = style.onload;
+        
+        style.onload = function () {
+          pending -= 1;
+  
+          try {
+            onload();
+          } catch(err) {
+  
+          } finally {
+            if (pending < 1) {
+              callback();
+            }
+          }
+        };
+      }
+      
       
       styleTags.push(style);
        
