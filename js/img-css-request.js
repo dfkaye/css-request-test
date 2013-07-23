@@ -1,8 +1,7 @@
-
 ;(function() {
 
   var requests = {};
-  var styleTags = {};
+  var styleTags = [];
   
   window.requestCss = requestCss;
   
