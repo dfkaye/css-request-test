@@ -40,7 +40,7 @@
 
     if (link.addEventListener) {
       
-      console.log('using addEventListener');
+      //console.log('using addEventListener');
       
       function handle() {
         link.removeEventListener('load', handle, false);
@@ -51,7 +51,7 @@
       
     } else {
       
-      console.log('using onload')
+      //console.log('using onload')
 
       var onload = link.onload;
       
