@@ -13,12 +13,9 @@
             
     if (typeof url == 'string' && !(url in requests)) {
           
-      var request = {url: url, callback: callback};
       var img = new Image();
       
-      requests[url] = url;
-      
-      img.src = url;
+      requests[url] = img.src = url;
       img.onload = img.onerror = function () {
          loadCss(url, callback);
       }
