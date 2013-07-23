@@ -28,30 +28,70 @@ window.onload = function() {
     var args = arguments;
     var len = args.length;
     var callback = args[len - 1];
-    
-    
+    var pending = len;
+    var cssText = '';
+    var url;
     var style = styleTags[styleTags.length - 1];
     
-    if (!style) {
+    if (!style || style.styleSheet.imports.length > 31) {    
       
       style = document.createElement('style');
 
       style.setAttribute('type', 'text/css');
       //style.setAttribute('media', 'all');
+      var onload = style.onload;
+      
+      style.onload = function () {
+
+        pending -= 1;
+
+        try {
+          
+          onload();
+          
+        } catch(err) {
+
+        } finally {
+          
+          if (pending < 1) {
+            
+            callback();
+          }
+          
+        }
+      };
       
       styleTags.push(style);
+       
+      // append the element right away so that the import directive runs on an active element
+      // borks out otherwise
+      document.getElementsByTagName('head')[0].appendChild(style);
+     
     }
+
     
-    var styleSheet = style.styleSheet;
-    var rules = styleSheet.rules;
+    for (var i = 0; i < len; i++) {
+     
+      url = args[i];
     
-    
-    styleSheet.addImport(url);
+      if (typeof url == 'string' && !(url in requests)) {
+        
+        requests[url] = url;
+        
+        try {
+          //cssText += "\n@import url('" + url + "');";
+          style.styleSheet.addImport(url);
+        } catch (err) {
+          global.console && console.warn(err + ': ' + url);
+
+          pending -= 1;
+
+        } finally {
+          continue;
+        } 
+      }
+    }
+
   }
-  
-  
-  
+
 }());
-
-
-
