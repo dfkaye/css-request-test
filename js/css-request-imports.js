@@ -1,4 +1,13 @@
-/*
+/* file: css-request-imports.js - provides stylesheet requestCss() api to JavaScript
+ * author: @dfkaye - david.kaye
+ * first: 12 FEB 2013
+ * previous: 22 JUL 2013
+ * last: 23 JUL 2013
+ *
+ * Prior Art:
+ *   - http://www.phpied.com/when-is-a-stylesheet-really-loaded/
+ *   - http://www.zachleat.com/web/load-css-dynamically/
+ *
  * IE 9 and down to get around the total stylesheet, imports and css rules limits 
  * wisely imposed by Microsoft's developers.
  */
