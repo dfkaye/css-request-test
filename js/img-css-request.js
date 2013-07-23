@@ -59,7 +59,7 @@
       
     	function handle() {
         style.removeEventListener('load', handle, false);
-        handleOnLoad(style, request, 20) // see above - try 20 times
+        handleOnLoad(style, request, 500) // see above - try 20 times
       }
       
       style.addEventListener('load', handle, false);
@@ -70,12 +70,15 @@
 
       var onload = style.onload;
       
-      console.log('call' in onload)
       style.onload = function () {
         //style.onload = null;
-        'call' in onload && onload.call();
-        
-    	  handleOnLoad(style, request, 20) // see above - try 20 times
+        try {
+          onload();
+        } catch (err) {
+          
+        } finally {
+    	    handleOnLoad(style, request, 500) // see above - try 20 times
+        }
       }
       
     }
@@ -134,7 +137,7 @@
         
         handleOnLoad(style, request, count - 1);
         
-      }, 1000) // cuzillion
+      }, 25) // cuzillion
     }
   }
   
