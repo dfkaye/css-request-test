@@ -4,18 +4,6 @@
  */
  
 ;(function () {
-
-window.onload = function() {
- setTimeout(function() {
-   document.getElementById('sleepcgi-test').innerHTML += '<br/>in progress ~ testing: should be IE 9 or less';
- }, 25);
-};
-
-  /* local */
-  
-  var requests = {};
-  var styleTags = [];
-  var callbacks = [];
   
   /* public */
    
@@ -34,25 +22,6 @@ window.onload = function() {
     var url;
     var style = styleTags[styleTags.length - 1];
     
-    
-    if (!style || style.styleSheet.imports.length > 31) {    
-      
-      style = document.createElement('style');
-
-      style.setAttribute('type', 'text/css');
-      //style.setAttribute('media', 'all');
-          
-      style.onload = function () {
-        handleCallbacks();
-      };
-     
-      styleTags.push(style);
-       
-      // append the element right away so that the import directive runs on an active element
-      // borks out otherwise
-      document.getElementsByTagName('head')[0].appendChild(style);
-    }
-    
     callbacks.push(callback);
     
     for (var i = 0; i < len; i++) {
@@ -62,6 +31,11 @@ window.onload = function() {
       if (typeof url == 'string' && !(url in requests)) {
         
         requests[url] = url;
+        
+        if (!style || style.styleSheet.imports.length > 31) {    
+          
+          style = newStyle();
+        }
         
         try {
           //cssText += "\n@import url('" + url + "');";
@@ -77,10 +51,34 @@ window.onload = function() {
     return requests;
   }
   
+  
+  /* local */
+  
+  var requests = {};
+  var styleTags = [];
+  var callbacks = [];
+  
+  
   function newStyle() {
+    
+    var style = document.createElement('style');
+
+    style.setAttribute('type', 'text/css');
+    //style.setAttribute('media', 'all');
+        
+    style.onload = function () {
+      handleCallbacks();
+    };
    
+    styleTags.push(style);
+     
+    // append the element right away so that the import directive runs on an active element
+    // borks out otherwise
+    document.getElementsByTagName('head')[0].appendChild(style);
+    
     return style;
   }
+  
   
   function handleCallbacks() {
     var callback;
