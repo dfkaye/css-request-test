@@ -52,6 +52,12 @@
       requestCss('http://2.cuzillion.com/bin/resource.cgi?type=css&sleep=10&n=2&t='+ (+new Date()), function () {
         //console.log('DONE - sheet 2', arguments);
         document.getElementById('sleepcgi-test').innerHTML += '<br/>modified by 2.cuzillion';
+        
+        // deferred or chained request...
+        requestCss('http://3.cuzillion.com/bin/resource.cgi?type=css&sleep=3&n=3&t='+ (+new Date()), function () {
+          //console.log('DONE - sheet 3', arguments);
+          document.getElementById('sleepcgi-test').innerHTML += '<br/>modified by 3.cuzillion';
+        });
       });
       
     </script>
