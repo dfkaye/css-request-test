@@ -122,7 +122,7 @@ function loadCss(request) {
     	message += "; don't know what's going on"
     }
 
-    !!console && console.log(message + '; ' + style.readyState);
+    !!console && console.log(message + '; ' + length);
 
     if (length > 0) {
             
