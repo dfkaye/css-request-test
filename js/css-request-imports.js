@@ -43,9 +43,9 @@ window.onload = function() {
       style.setAttribute('type', 'text/css');
       //style.setAttribute('media', 'all');
       
-      var onchange = style.onchange;
+      var onload = style.onload;
       
-      style.onchange = function (e) {
+      style.onload = function (e) {
         document.getElementById('sleepcgi-test').innerHTML += '<br/>' + e;
         try {
           onload();
