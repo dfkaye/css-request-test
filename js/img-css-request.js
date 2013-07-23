@@ -43,11 +43,11 @@
           requests[url] = img;
           
           img.onload = function () {
-            console.log(uri + ' is loaded');
+            console.log(url + ' is loaded');
             console.log(img)
           }
           
-          img.src = uri;      
+          img.src = url;      
         }
       }
     }
