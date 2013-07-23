@@ -11,7 +11,13 @@
     </style>
     
     <!-- use if IE 9++ and non-IE browsers -->
-    <!--[if gte IE 10]><!--><script src='./js/css-request.js'></script><!--<![endif]-->
+    <!--[if gte IE 10]><!--><script>
+      window.onload = function() {
+        setTimeout(function() {
+          document.getElementById('sleepcgi-test').innerHTML += '<br/>in progress ~ testing: should be IE 9 or less';
+        }, 25);
+      };
+    </script><script src='./js/css-request.js'></script><!--<![endif]-->
     <!-- fallback IE9 & below... -->
     <!--[if lt IE 10]><script src='./js/css-request-imports.js'></script><![endif]-->  
         
