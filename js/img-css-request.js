@@ -1,7 +1,7 @@
 ;(function() {
 
   var requests = {};
-  var styleTags = [];
+  //var styleTags = [];
   
   window.requestCss = requestCss;
   
@@ -12,7 +12,7 @@
    */
   function requestCss(url, callback) {
 
-    var cssText = '';
+    //var cssText = '';
             
     if (typeof url == 'string' && !(url in requests)) {
           
@@ -61,7 +61,7 @@
 
     if (link.addEventListener) {
       
-      console.log('addEventListener')
+      console.log('using addEventListener')
       
     	function handle() {
         
@@ -75,7 +75,7 @@
       
     } else {
       
-    	console.log('onload')
+    	console.log('using onload')
 
       var onload = link.onload;
       
@@ -106,7 +106,10 @@
   }
   
   function handleOnLoad(style, request, count) {
-    alert('handleOnLoad called')
+    
+    // should not see this
+    console.log('handleOnLoad called: ' + request.url + '; ' + count);
+    
     var url = request.url;
     var callback = request.callback;
     var message = 'handleOnLoad ' + count;
