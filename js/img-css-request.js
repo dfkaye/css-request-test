@@ -37,7 +37,7 @@
             
             //console.log(url + ' is loaded');
             console.log('loaded ' + url)
-            loadCss(url);
+            loadCss(url, callback);
           }
           
 
@@ -47,7 +47,7 @@
     
   }
   
-  function loadCss(url) {
+  function loadCss(url, callback) {
     
     var cssText = "\n@import url('" + url + "');";
     var style = styleTags[styleTags.length - 1];
@@ -92,8 +92,7 @@
       // most dom compliant browsers
       style.appendChild(document.createTextNode(cssText));
     }
-    
-    
+
   }
   
   function handleOnLoad(style, callback, count) {
