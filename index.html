@@ -25,16 +25,18 @@
       [https://github.com/dfkaye/css-request-test/]
       (https://github.com/dfkaye/css-request-test/l)
     </p>    
-    <div class='sleepcgi'>sleepcgi div gets restyled eventually</div>
+    <div id='sleepcgi-test' class='sleepcgi'>sleepcgi div gets restyled eventually</div>
     
     <script>
-
+      
       requestCss('http://1.cuzillion.com/bin/resource.cgi?type=css&sleep=5&n=1&t='+ (+new Date()), function () {
-        console.log('DONE - sheet 1', arguments);
+        //console.log('DONE - sheet 1', arguments);
+        document.getElementById('sleepcgi-test').innerHTML += '<br/>modified by 1.cuzillion';
       });
 
       requestCss('http://2.cuzillion.com/bin/resource.cgi?type=css&sleep=10&n=2&t='+ (+new Date()), function () {
-        console.log('DONE - sheet 2', arguments);
+        //console.log('DONE - sheet 2', arguments);
+        document.getElementById('sleepcgi-test').innerHTML += '<br/>modified by 2.cuzillion';
       });
       
     </script>
