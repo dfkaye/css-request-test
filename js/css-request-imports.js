@@ -6,20 +6,50 @@
 ;(function () {
 
 window.onload = function() {
-  document.getElementById('sleepcgi-test').innerHTML += '<br/>testing: should be IE 9 or less';
+  document.getElementById('sleepcgi-test').innerHTML += '<br/>in progress ~ testing: should be IE 9 or less';
 }
+
+  /* local */
+  
+  var requests = {};
+  var styleTags = [];
+  
   /* public */
    
   window.requestCss = importCss;
   
-  /* local */
-  
-  var requests = {};
-  
+  /*
+   * param - any number of string arguments to css filepaths
+   * 
+   * callback - last argument must be a function
+   */
   function importCss() {
-   
-   
+    
+    var args = arguments;
+    var len = args.length;
+    var callback = args[len - 1];
+    
+    
+    var style = styleTags[styleTags.length - 1];
+    
+    if (!style) {
+      
+      style = document.createElement('style');
+
+      style.setAttribute('type', 'text/css');
+      //style.setAttribute('media', 'all');
+      
+      styleTags.push(style);
+    }
+    
+    var styleSheet = style.styleSheet;
+    var rules = styleSheet.rules;
+    
+    
+    styleSheet.addImport(url);
   }
+  
+  
   
 }());
 
