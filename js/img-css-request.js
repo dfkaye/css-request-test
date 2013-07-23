@@ -11,19 +11,12 @@
    */
   function requestCss(url, callback) {
             
-    if (typeof url == 'string' && !(url in requests)) {
-          
-      //var img = new Image();
-      
-      requests[url] = url;
-      //requests[url] = img.src = url;
-      //img.onload = img.onerror = function () {
-         loadCss(url, callback);
-      //}
+    if (typeof url != 'string' || (url in requests)) {
+      return false; 
     }
-  }
-
-  function loadCss(url, callback) {
+    
+    // prevent accidental re-requests - need a hook to dump cache or force/refresh
+    requests[url] = {url: url, callback: callback};
 
     var link = document.createElement('link');
     
@@ -34,7 +27,7 @@
 
     if (link.addEventListener) {
       
-      console.log('using addEventListener');
+      //console.log('using addEventListener');
       
       function handle() {
         link.removeEventListener('load', handle, false);
@@ -45,7 +38,7 @@
       
     } else {
       
-      console.log('using onload')
+      //console.log('using onload')
 
       var onload = link.onload;
       
@@ -59,6 +52,9 @@
         }
       }
     }
+    
+    // worth turning into a status object eventually
+    return requests[uri];
   }
 
 }());
