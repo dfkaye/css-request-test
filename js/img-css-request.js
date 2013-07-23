@@ -17,9 +17,15 @@
     if (typeof url == 'string' && !(url in requests)) {
           
       var request = {url: url, callback: callback};
+      var img = new Image();
       
       requests[url] = request;
-      loadCss(request);
+      
+      img.src = url;
+      img.onload = img.onerror = function () {
+         loadCss(request);
+      }
+      
     }
     
   }
@@ -27,11 +33,16 @@
   function loadCss(request) {
 
     var url = request.url;
+    var callback = request.callback
+    var link = document.createElement('link');
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('href', url);
     
+    document.getElementsByTagName('head')[0].appendChild(link);
     //console.log(url + ' is loaded');
     //console.log('loadCss ' + request.url)
     
-    var cssText = "\n@import url('" + url + "');";
+    /*var cssText = "\n@import url('" + url + "');";
     var style = styleTags[styleTags.length - 1];
     
     if (!style || (style.styleSheet && style.styleSheet.rules.length > 31)) {
@@ -46,15 +57,17 @@
       // append the element right away so that the import directive runs on an active element
       // borks out otherwise
       document.getElementsByTagName('head')[0].appendChild(style);      
-    }
+    }*/
 
-    if (style.addEventListener) {
+    if (link.addEventListener) {
       
       console.log('addEventListener')
       
     	function handle() {
-        style.removeEventListener('load', handle, false);
-        handleOnLoad(style, request, 500) // see above - try 20 times
+        link.removeEventListener('load', handle, false);
+        callback();
+        
+        //handleOnLoad(style, request, 500) // see above - try 20 times
       }
       
       style.addEventListener('load', handle, false);
@@ -72,19 +85,21 @@
         } catch (err) {
           
         } finally {
-    	    handleOnLoad(style, request, 500) // see above - try 20 times
+    	    callback();
+        
+        //handleOnLoad(style, request, 500) // see above - try 20 times
         }
       }
       
     }
       
-    if (style.styleSheet) {
+    /*if (style.styleSheet) {
       // internet explorer
       style.styleSheet.cssText += cssText;
     } else {
       // most dom compliant browsers
       style.appendChild(document.createTextNode(cssText));
-    }
+    }*/
 
   }
   
@@ -131,11 +146,7 @@
 
     if (length > 0) {
       
-      var img = new Image();
-      img.src = url;
-      img.onload = img.onerror = function () {
-         typeof callback != 'function' || (callback())
-      }
+      typeof callback != 'function' || (callback())
       
     } else if (count > 0) {
 
