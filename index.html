@@ -11,13 +11,7 @@
     </style>
     
     <!-- use if IE 9++ and non-IE browsers -->
-    <!--[if gte IE 10]><!--><script>
-      window.onload = function() {
-        setTimeout(function() {
-          document.getElementById('sleepcgi-test').innerHTML += '<br/>in progress ~ testing: should be IE 9 or less';
-        }, 25);
-      };
-    </script><script src='./js/css-request.js'></script><!--<![endif]-->
+    <!--[if gte IE 10]><!--><script src='./js/css-request.js'></script><!--<![endif]-->
     <!-- fallback IE9 & below... -->
     <!--[if lt IE 10]><script src='./js/css-request-imports.js'></script><![endif]-->  
         
@@ -45,8 +39,12 @@
       <a href='https://github.com/dfkaye/css-request-test/'>
         https://github.com/dfkaye/css-request-test/
       </a>
-    </p>    
-    <div id='sleepcgi-test' class='sleepcgi'>sleepcgi div gets restyled eventually</div>
+    </p>
+      
+    <div id='sleepcgi-test' class='sleepcgi'>
+      <p>sleepcgi div gets restyled eventually</p>
+      <!--[if lt IE 10]><p>should be IE 9 or less</p><![endif]-->
+    </div>  
     
     <script>
       
