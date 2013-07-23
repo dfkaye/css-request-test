@@ -17,21 +17,19 @@
     if (typeof url == 'string' && !(url in requests)) {
       
       var img = new Image();
+      var request = {url: url, callback: callback};
       
-      requests[url] = {url: url, callback: callback};
+      requests[url] = request;
       img.src = url;
       img.onload = img.onerror = function () {
-        loadCss(requests[url]);
+        loadCss(request);
       }
-
     }
     
   }
 
 function loadCss(request) {
-        
 
-    
     var url = request.url;
     
     //console.log(url + ' is loaded');
@@ -47,36 +45,36 @@ function loadCss(request) {
       
       style.setAttribute('type', 'text/css');
       //style.setAttribute('media', 'all');
-      
-      if (style.addEventListener) {
-        
-        console.log('addEventListener')
-      	
-      	function handle() {
-          //sheet.removeEventListener('load', handle, false);
-          handleOnLoad(style, request, 20) // see above - try 20 times
-        }
-        
-        style.addEventListener('load', handle, false);
-        
-      } else {
-        
-      	console.log('onload')
-
-        style.onload = function () {
-          //style.onload = null;
-      	  handleOnLoad(style, request, 20) // see above - try 20 times
-        }
-        
-      }
-      
+          
       styleTags.push(style);
       
       // append the element right away so that the import directive runs on an active element
       // borks out otherwise
       document.getElementsByTagName('head')[0].appendChild(style);      
     }
-            
+    
+    if (style.addEventListener) {
+      
+      console.log('addEventListener')
+      
+    	function handle() {
+        //sheet.removeEventListener('load', handle, false);
+        handleOnLoad(style, request, 20) // see above - try 20 times
+      }
+      
+      style.addEventListener('load', handle, false);
+      
+    } else {
+      
+    	console.log('onload')
+
+      style.onload = function () {
+        //style.onload = null;
+    	  handleOnLoad(style, request, 20) // see above - try 20 times
+      }
+      
+    }
+      
     if (style.styleSheet) {
       // internet explorer
       style.styleSheet.cssText += cssText;
@@ -134,7 +132,7 @@ function loadCss(request) {
 
       setTimeout(function() {
         
-        handleOnLoad(style, url, count - 1);
+        handleOnLoad(style, request, count - 1);
         
       }, 1000) // cuzillion
     }
