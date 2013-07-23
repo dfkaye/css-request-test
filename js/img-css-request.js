@@ -28,7 +28,7 @@
     
   }
 
-function loadCss(request) {
+  function loadCss(request) {
 
     var url = request.url;
     
@@ -89,35 +89,30 @@ function loadCss(request) {
   }
   
   function handleOnLoad(style, request, count) {
+    
     var url = request.url;
     var callback = request.callback;
     var message = 'handleOnLoad ' + count;
-    var length;
-    var sheet;
     var cssRules;
-    
-    if (style.styleSheet) {
+    var length;
+
+    if (style.styleSheet && style.styleSheet.rules) {
       
       // MSIE
       
       //console.dir(sheet.rules)
       //console.dir(sheet.imports)
 
-      //cssRules = style.styleSheet.rules;
-      cssRules = style.styleSheet.imports
+      //cssRules = style.styleSheet.imports;
+      cssRules = style.styleSheet.rules
       length = cssRules.length;
       message += '; MSIE; ' + length
 
-    } else if (style.sheet) {
+    } else if (style.sheet && style.sheet.cssRules) {
             
       //console.dir(style.sheet)
       
-      try {
-        cssRules = style.sheet.cssRules;
-      } catch(err) {
-        cssRules = ''; // firefox bonk out
-      }
-      
+      cssRules = style.sheet.cssRules;    
       length = cssRules.length
       message += '; W3C; ' + length
     } else {
