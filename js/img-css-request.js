@@ -40,14 +40,14 @@
           
           var img = new Image();
           
-          requests[url] = img;
+          requests[url] = url;
           
           img.onload = function () {
             console.log(url + ' is loaded');
             console.log(img)
           }
           
-          img.src = url;      
+          img.src = url;
         }
       }
     }
