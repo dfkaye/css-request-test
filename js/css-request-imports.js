@@ -6,6 +6,20 @@
 ;(function () {
 
   alert('testing: should be IE 9 or less');
+  /* public */
+   
+  window.requestCss = importCss;
   
+  /* local */
+  
+  var requests = {};
+  
+  function importCss() {
+   
+   
+  }
   
 }());
+
+
+
