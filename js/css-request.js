@@ -97,6 +97,8 @@
   
     style.setAttribute('type', 'text/css');
     //style.setAttribute('media', 'all');
+    
+    var sheet = style.styleSheet || style.sheet;
 		
     if (typeof callback === 'function') {
     	
@@ -110,31 +112,31 @@
        */
 
 
-      if (style.onreadystatechange) {
+      if (sheet.onreadystatechange) {
       	console.log('onreadystatechange')
 
-        style.onreadystatechange = function () {
-          if (style.readyState == 'loaded' || style.readyState == 'complete') {
-            style.onreadystatechange = null;
+        sheet.onreadystatechange = function () {
+          if (sheet.readyState == 'loaded' || sheet.readyState == 'complete') {
+            sheet.onreadystatechange = null;
             handleOnLoad(style, callback, 20) // see above - try 20 times
           }
         }
         
-      } else if (style.addEventListener) {
+      } else if (sheet.addEventListener) {
       	console.log('addEventListener')
       	
       	function handle() {
-          style.removeEventListener('load', handle, false);
+          sheet.removeEventListener('load', handle, false);
           handleOnLoad(style, callback, 20) // see above - try 20 times
         }
         
-        style.addEventListener('load', handle, false);
+        sheet.addEventListener('load', handle, false);
       } else {
       	console.log('onload')
 
-        style.onload = function () {
-          style.onload = null;
-      	  handleOnLoad(style, callback, 20) // see above - try 20 times
+        sheet.onload = function () {
+          sheet.onload = null;
+      	  handleOnLoad(sheet, callback, 20) // see above - try 20 times
         }
         
       }
