@@ -35,6 +35,7 @@ window.onload = function() {
     var url;
     var style = styleTags[styleTags.length - 1];
     
+    
     if (!style || style.styleSheet.imports.length > 31) {    
       
       style = document.createElement('style');
@@ -42,13 +43,18 @@ window.onload = function() {
       style.setAttribute('type', 'text/css');
       //style.setAttribute('media', 'all');
       
-      style.onload = function onStyleLoad() {
-        
-        pending -= 1;
-        document.getElementById('sleepcgi-test').innerHTML += '<br/>' + style.styleSheet.imports.length;
-        if (pending < 1) {
+      var onload = style.onload;
+      
+      style.onload = function () {
+       
+        try {
+          onload();
+        } catch (err) {
+         
+        } finally {
           callback();
         }
+        
       };
      
       styleTags.push(style);
@@ -68,8 +74,8 @@ window.onload = function() {
         requests[url] = url;
         
         try {
-          cssText += "\n@import url('" + url + "');";
-          //style.styleSheet.addImport(url);
+          //cssText += "\n@import url('" + url + "');";
+          style.styleSheet.addImport(url);
         } catch (err) {
           global.console && console.warn(err + ': ' + url);
 
@@ -80,7 +86,7 @@ window.onload = function() {
         } 
       }
     }
-    style.styleSheet.cssText = cssText;
+
     return requests;
   }
   
