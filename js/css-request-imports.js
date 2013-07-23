@@ -39,50 +39,31 @@ window.onload = function() {
 
       style.setAttribute('type', 'text/css');
       //style.setAttribute('media', 'all');
+
+      var onload = style.onload;
       
-      
-      if (style.onreadystatechange) {
-       
-        style.onreadystatechange = function () {
-          if (style.readyState == 'loaded' || style.readyState == 'complete') {
-            
-            //handleOnLoad(style, callback, 20) // see above - try 20 times
-            
-            pending -= 1;
-            if (pending < 1) {
-              style.onreadystatechange = null;
-              callback();
-            }             
+      style.onload = function () {
+        document.getElementById('sleepcgi-test').innerHTML += '<br/>' + pending;
+        pending -= 1;
+
+        try {
+          onload();
+        } catch(err) {
+
+        } finally {
+          if (pending < 1) {
+            callback();
           }
         }
-        
-      } else {
-        
-        var onload = style.onload;
-        
-        style.onload = function () {
-          pending -= 1;
-  
-          try {
-            onload();
-          } catch(err) {
-  
-          } finally {
-            if (pending < 1) {
-              callback();
-            }
-          }
-        };
-      }
-      
-      
+      };
+     
       styleTags.push(style);
        
       // append the element right away so that the import directive runs on an active element
       // borks out otherwise
       document.getElementsByTagName('head')[0].appendChild(style);
-     
     }
+    
 
     for (var i = 0; i < len; i++) {
      
@@ -107,6 +88,11 @@ window.onload = function() {
     }
 
     return requests;
+  }
+  
+  function newStyle() {
+   
+    return style;
   }
 
 }());
