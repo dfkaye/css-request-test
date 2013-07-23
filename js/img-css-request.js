@@ -58,10 +58,9 @@
       styleTags.push(style);
     }
     
-    var sheet = style.styleSheet || style.sheet;
-    var rules = sheet.rules || sheet.cssRules;
+    var sheet = style.styleSheet ? style.styleSheet : style.sheet;
     
-    console.log(url, sheet, rules);
+    console.log(url, sheet);
     
   }
   
