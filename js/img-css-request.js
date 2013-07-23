@@ -36,7 +36,7 @@
         
         url = args[i];
         
-        if (typeof url == 'string' && !(url in requested)) {
+        if (typeof url == 'string' && !(url in requests)) {
           
           var img = new Image();
           
