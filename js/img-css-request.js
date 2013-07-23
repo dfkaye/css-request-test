@@ -38,13 +38,18 @@
         
         if (typeof url == 'string' && !(url in requests)) {
           
+          console.log(url)
+          
+          
           var img = new Image();
           
           requests[url] = url;
           
           img.onload = function () {
+            
             console.log(url + ' is loaded');
             console.log(img)
+            
           }
           
           img.src = url;
