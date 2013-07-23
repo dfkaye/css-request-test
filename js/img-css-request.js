@@ -54,7 +54,7 @@
     }
     
     // worth turning into a status object eventually
-    return requests[uri];
+    return requests[url];
   }
 
 }());
