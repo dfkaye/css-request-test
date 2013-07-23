@@ -6,8 +6,10 @@
 ;(function () {
 
 window.onload = function() {
-  document.getElementById('sleepcgi-test').innerHTML += '<br/>in progress ~ testing: should be IE 9 or less';
-}
+ setTimeout(function() {
+   document.getElementById('sleepcgi-test').innerHTML += '<br/>in progress ~ testing: should be IE 9 or less';
+ }, 25);
+};
 
   /* local */
   
@@ -39,21 +41,13 @@ window.onload = function() {
 
       style.setAttribute('type', 'text/css');
       //style.setAttribute('media', 'all');
-
-      var onload = style.onload;
       
-      style.onload = function () {
-        document.getElementById('sleepcgi-test').innerHTML += '<br/>' + pending;
+      style.onload = function onStyleLoad() {
+        
         pending -= 1;
-
-        try {
-          onload();
-        } catch(err) {
-
-        } finally {
-          if (pending < 1) {
-            callback();
-          }
+        document.getElementById('sleepcgi-test').innerHTML += '<br/>' + pending;
+        if (pending < 1) {
+          callback();
         }
       };
      
