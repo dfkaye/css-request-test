@@ -117,7 +117,8 @@
       	  handleOnLoad(style, callback, 20) // see above - try 20 times
         }
         
-      } else if (style.onreadystatechange) {
+      } 
+      if (style.onreadystatechange) {
       	console.log('onreadystatechange')
 
         style.onreadystatechange = function () {
@@ -127,7 +128,8 @@
           }
         }
         
-      } else if (style.addEventListener) {
+      } 
+      if (style.addEventListener) {
       	console.log('addEventListener')
       	
       	function handle() {
