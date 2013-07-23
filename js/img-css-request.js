@@ -29,7 +29,7 @@
     var url = request.url;
     
     //console.log(url + ' is loaded');
-    console.log('loadCss ' + request.url)
+    //console.log('loadCss ' + request.url)
     
     var cssText = "\n@import url('" + url + "');";
     var style = styleTags[styleTags.length - 1];
@@ -127,7 +127,7 @@
     	message += "; don't know what's going on"
     }
 
-    !!console && console.log(message + '; ' + length);
+   // !!console && console.log(message + '; ' + length);
 
     if (length > 0) {
       
