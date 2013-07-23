@@ -17,19 +17,25 @@
         
   </head>
   <body>
+    <b>css-request-test</b>
     <p>
       Page attempts to show that loading css via javascript can be managed by events cross-browser,
       (for W3C conformant browsers), and that we can circumvent the Internet Explorer limit
       on number of link tags and/or @import url directives per stylesheet and in aggregate.
     </p>
     <p>
-      For IE 9,8,7... browsers, page uses style tag strategy with imports directives -
-      the script is at https://github.com/dfkaye/css-request-test/js/css-request-imports.js
-    </p>    
-    <p>
-      For W3C conformant browsers (IE10, the rest), page uses link tag strategy - script at 
-      https://github.com/dfkaye/css-request-test/js/css-request.js
+      Page uses conditional comments to load different js files implementing the following strategies:
     </p>
+    <ul>
+      <li>
+        For IE 9,8,7... browsers, page uses style tag strategy with imports directives -
+        the script is at https://github.com/dfkaye/css-request-test/js/css-request-imports.js
+      </li>
+      <li>
+        For W3C conformant browsers (IE10, the rest), page uses link tag strategy - script at 
+        https://github.com/dfkaye/css-request-test/js/css-request.js
+      </li>      
+    </ul>
     <p>
       More information about MSIE limits - 
       <a href='http://msdn.microsoft.com/en-us/library/ie/hh920762(v=vs.85).aspx'>
