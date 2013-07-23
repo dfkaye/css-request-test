@@ -109,15 +109,7 @@
        * AND, we can use multiple imports in a style to beat the IE restriction (no kidding!).
        */
 
-      //if (style.onload) {
-      	console.log('onload')
 
-        style.onload = function () {
-          style.onload = null;
-      	  handleOnLoad(style, callback, 20) // see above - try 20 times
-        }
-        
-      //} 
       if (style.onreadystatechange) {
       	console.log('onreadystatechange')
 
@@ -128,9 +120,7 @@
           }
         }
         
-      }
-      
-      if (style.addEventListener) {
+      } else if (style.addEventListener) {
       	console.log('addEventListener')
       	
       	function handle() {
@@ -139,6 +129,14 @@
         }
         
         style.addEventListener('load', handle, false);
+      } else {
+      	console.log('onload')
+
+        style.onload = function () {
+          style.onload = null;
+      	  handleOnLoad(style, callback, 20) // see above - try 20 times
+        }
+        
       }
       
     }
