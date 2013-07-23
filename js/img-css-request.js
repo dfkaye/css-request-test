@@ -16,19 +16,17 @@
       var request = {url: url, callback: callback};
       var img = new Image();
       
-      requests[url] = request;
+      requests[url] = url;
       
       img.src = url;
       img.onload = img.onerror = function () {
-         loadCss(request);
+         loadCss(url, callback);
       }
     }
   }
 
-  function loadCss(request) {
+  function loadCss(url, callback) {
 
-    var url = request.url;
-    var callback = request.callback
     var link = document.createElement('link');
     
     link.setAttribute('rel', 'stylesheet');
