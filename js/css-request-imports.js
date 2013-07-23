@@ -45,8 +45,8 @@ window.onload = function() {
       
       var onload = style.onload;
       
-      style.onload = function () {
-       
+      style.onload = function (e) {
+        document.getElementById('sleepcgi-test').innerHTML += '<br/>' + e;
         try {
           onload();
         } catch (err) {
