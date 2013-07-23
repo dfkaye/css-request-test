@@ -19,15 +19,6 @@
     var cssText = '';
     var url;
     
-    var style = styleTags[styleTags.length - 1];
-    
-    if (!style) { 
-      style = document.createElement('style');
-      style.setAttribute('type', 'text/css');
-      //style.setAttribute('media', 'all');
-      styleTags.push(style);
-    }
-    
     if (typeof callback === 'function') {
     
       len = len - 1;
@@ -38,9 +29,6 @@
         
         if (typeof url == 'string' && !(url in requests)) {
           
-          console.log(url)
-          
-          
           var img = new Image();
           
           requests[url] = url;
@@ -48,14 +36,32 @@
           img.onload = img.onerror = function () {
             
             //console.log(url + ' is loaded');
-            console.log('loaded')
-            
+            console.log('loaded ' + url)
+            loadCss(url);
           }
           
 
         }
       }
     }
+    
+  }
+  
+  function loadCss(url) {
+    
+    var style = styleTags[styleTags.length - 1];
+    
+    if (!style) { 
+      style = document.createElement('style');
+      style.setAttribute('type', 'text/css');
+      //style.setAttribute('media', 'all');
+      styleTags.push(style);
+    }
+    
+    var sheet = style.styleSheet || style.sheet;
+    var rules = sheet.rules || sheet.cssRules;
+    
+    console.log(url, sheet, rules);
     
   }
   
