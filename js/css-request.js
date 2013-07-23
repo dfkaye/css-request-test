@@ -1,4 +1,17 @@
-;(function() {
+/* file: css-request.js - provides stylesheet requestCss() api to JavaScript
+ * author: @dfkaye - david.kaye
+ * first: 12 FEB 2013
+ * previous: 22 JUL 2013
+ * last: 23 JUL 2013
+ *
+ * Prior Art:
+ *   - http://www.phpied.com/when-is-a-stylesheet-really-loaded/
+ *   - http://www.zachleat.com/web/load-css-dynamically/
+ *
+ * Uses link element strategy (i.e., creating and appending link elements per supplied URL)
+ */
+ 
+ ;(function() {
 
   var requests = {};
   
