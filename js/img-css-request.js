@@ -64,6 +64,7 @@
       console.log('addEventListener')
       
     	function handle() {
+        
         link.removeEventListener('load', handle, false);
         callback();
         
@@ -79,6 +80,7 @@
       var onload = link.onload;
       
       link.onload = function () {
+        
         //style.onload = null;
         try {
           onload();
@@ -104,7 +106,7 @@
   }
   
   function handleOnLoad(style, request, count) {
-    
+    alert('handleOnLoad called')
     var url = request.url;
     var callback = request.callback;
     var message = 'handleOnLoad ' + count;
