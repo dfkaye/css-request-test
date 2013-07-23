@@ -58,7 +58,7 @@ function loadCss(request) {
       console.log('addEventListener')
       
     	function handle() {
-        //sheet.removeEventListener('load', handle, false);
+        style.removeEventListener('load', handle, false);
         handleOnLoad(style, request, 20) // see above - try 20 times
       }
       
@@ -68,8 +68,11 @@ function loadCss(request) {
       
     	console.log('onload')
 
+      var onload = style.onload;
+      
       style.onload = function () {
         //style.onload = null;
+        onload();
     	  handleOnLoad(style, request, 20) // see above - try 20 times
       }
       
