@@ -5,7 +5,7 @@
  
 ;(function () {
 
-document.body.onload = function() {
+window.onload = function() {
   document.getElementById('sleepcgi-test').innerHTML += '<br/>testing: should be IE 9 or less';
 }
   /* public */
