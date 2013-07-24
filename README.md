@@ -16,7 +16,7 @@ Read these if you're unfamiliar with the problem:
 + @3rdeden tweet [You don&#39;t understand cross browser pain until&hellip;](https://twitter.com/3rdEden/statuses/358669103973675009)
 + Stoyan's blog [When is a stylesheet really loaded?](http://www.phpied.com/when-is-a-stylesheet-really-loaded/)
 + John Albin's blog [31 reasons to hate IE&hellip;](http://john.albin.net/css/ie-stylesheets-not-loading)
-+ Microsoft&#39;s removal of this limit [starting in IE10](http://msdn.microsoft.com/en-us/library/ie/hh920762(v=vs.85).aspx)
++ Microsoft&#39;s removal of this limit [starting in IE10](http://msdn.microsoft.com/en-us/library/ie/hh920762.aspx)
 
 Working example
 ---------------
