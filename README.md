@@ -30,17 +30,17 @@ As painful as it is to be unable to load more than 971 stylesheets, Microsoft's 
 actually telling us something important when they limit the stylesheet payload to 32 or 255 or 
 whatever:
 
-# you're overloading the document with crap
-# you're probably un-setting a lot of css rules you already labored over with dedication to 
++ you're overloading the document with crap
++ you're probably un-setting a lot of css rules you already labored over with dedication to 
     get right the first time - better reduce the ruleset than complain about MSIE.
-# CODE IS NOT ART, GET OVER IT (spoken with love and compassion, of course).
++ CODE IS NOT ART, GET OVER IT (spoken with love and compassion, of course).
 
 More to come&hellip;
 --------------------
 
-# better repo without "test" in the name, should have the following:
-# support arbitrary argument length (aka batch requests) in both implementations.
-# support node.js style callback(err, data) for better err hook.
-# report (but don't throw) errors for malformed argument types.
-# fix imports strategy kickoff which appears to block rendering.
-# document the api/examples *for the love of all that is holy.*
++ better repo without "test" in the name, should have the following:
++ support arbitrary argument length (aka batch requests) in both implementations.
++ support node.js style callback(err, data) for better err hook.
++ report (but don't throw) errors for malformed argument types.
++ fix imports strategy kickoff which appears to block rendering.
++ document the api/examples *for the love of all that is holy.*
