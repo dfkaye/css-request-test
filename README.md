@@ -1,12 +1,12 @@
 CSS Request Test
 ================
 
-An experiment with JavaScript (and HTML - conditional comments) to load CSS stylesheets dynamically, 
-with event-driven callbacks, asynchronously, cross-browser.
-
-Last modified: 24 JUL 2013
+experimental html &amp; js for loading css stylesheets dynamically, asynchronously, with event-driven 
+callbacks, cross-browser.
 
 Should become a better repo eventually&hellip;
+
+Last modified: 24 JUL 2013
 
 Motivation
 ----------
