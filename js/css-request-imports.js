@@ -20,45 +20,36 @@
   window.requestCss = importCss;
   
   /*
-   * param - any number of string arguments to css filepaths
+   * param url - string url to css filepaths
    * 
    * callback - last argument must be a function
    */
-  function importCss() {
-    
-    var args = arguments;
-    var len = args.length;
-    var callback = args[len - 1];
-    var url;
-    var style = styleTags[styleTags.length - 1];
-    
-    callbacks.push(callback);
-    
-    for (var i = 0; i < len; i++) {
-     
-      url = args[i];
-    
-      if (typeof url == 'string' && !(url in requests)) {
-        
-        requests[url] = url;
-        
-        if (!style || style.styleSheet.imports.length > 31) {    
-          
-          style = newStyle();
-        }
-        
-        try {
-          //cssText += "\n@import url('" + url + "');";
-          style.styleSheet.addImport(url);
-        } catch (err) {
-          global.console && console.warn(err + ': ' + url);
-        } finally {
-          continue;
-        } 
-      }
+  function importCss(url, callback) {
+            
+    if (typeof url != 'string' || (url in requests)) {
+      return false; 
     }
+    
+    // prevent accidental re-requests - need a hook to dump cache or force/refresh
+    requests[url] = {url: url, callback: callback};
+    
+    var style = styleTags[styleTags.length - 1];
 
-    return requests;
+    if (!style || style.styleSheet.imports.length > 31) {    
+      
+      style = newStyle();
+    }
+    
+    try {
+      //cssText += "\n@import url('" + url + "');";
+      style.styleSheet.addImport(url);
+    } catch (err) {
+      global.console && console.warn(err + ': ' + url);
+    } finally {
+      callbacks.push(callback);
+    } 
+    
+    return requests[url];
   }
   
   
