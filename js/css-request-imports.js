@@ -14,51 +14,12 @@
  */
  
 ;(function () {
-  
-  /* public */
-   
-  window.requestCss = importCss;
-  
-  /*
-   * param url - string url to css filepaths
-   * 
-   * callback - last argument must be a function
-   */
-  function importCss(url, callback) {
-            
-    if (typeof url != 'string' || (url in requests)) {
-      return false; 
-    }
-    
-    // prevent accidental re-requests - need a hook to dump cache or force/refresh
-    requests[url] = {url: url, callback: callback};
-    
-    var style = styleTags[styleTags.length - 1];
-
-    if (!style || style.styleSheet.imports.length > 31) {    
-      
-      style = newStyle();
-    }
-    
-    try {
-      //cssText += "\n@import url('" + url + "');";
-      style.styleSheet.addImport(url);
-    } catch (err) {
-      global.console && console.warn(err + ': ' + url);
-    } finally {
-      callbacks.push(callback);
-    } 
-    
-    return requests[url];
-  }
-  
-  
-  /* local */
+ 
+  /* local vars and fns */
   
   var requests = {};
   var styleTags = [];
   var callbacks = [];
-  
   
   function newStyle() {
     
@@ -80,13 +41,50 @@
     return style;
   }
   
-  
   function handleCallbacks() {
     var callback;
     while (callbacks[0]) {
       callback = callbacks.shift();
       callback();
     }
+  }
+  
+  
+  /* public api */
+   
+  window.requestCss = importCss;
+  
+  /*
+   * param url - string url to css filepath
+   * 
+   * callback - last argument must be a function
+   */
+  function importCss(url, callback) {
+            
+    if (typeof url != 'string' || (url in requests)) {
+      return false; 
+    }
+    
+    // prevent accidental re-requests - need a hook to dump cache or force/refresh
+    requests[url] = {url: url, callback: callback};
+    
+    var style = styleTags[styleTags.length - 1];
+
+    if (!style || style.styleSheet.imports.length > 31) {    
+      
+      style = newStyle();
+    }
+    
+    try {
+      style.styleSheet.addImport(url);
+    } catch (err) {
+      global.console && console.warn(err + ': ' + url);
+    } finally {
+      callbacks.push(callback);
+    } 
+    
+    // worth turning into a status object eventually
+    return requests[url];
   }
 
 }());
