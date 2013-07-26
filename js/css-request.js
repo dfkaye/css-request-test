@@ -12,8 +12,12 @@
  */
  
  ;(function() {
+  
+  /* local vars and fns */
 
   var requests = {};
+  
+  /* public api */
   
   window.requestCss = requestCss;
   
