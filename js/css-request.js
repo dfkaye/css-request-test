@@ -1,8 +1,8 @@
 /* file: css-request.js - provides stylesheet requestCss() api to JavaScript
  * author: @dfkaye - david.kaye
  * first: 12 FEB 2013
- * previous: 22 JUL 2013
- * last: 23 JUL 2013
+ * previous: 23 JUL 2013
+ * last: 26 JUL 2013
  *
  * Prior Art:
  *   - http://www.phpied.com/when-is-a-stylesheet-really-loaded/
