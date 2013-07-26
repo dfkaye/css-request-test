@@ -6,7 +6,7 @@ callbacks, cross-browser.
 
 Should become a better repo eventually&hellip;
 
-Last modified: 24 JUL 2013
+Last modified: 26 JUL 2013
 
 Motivation
 ----------
