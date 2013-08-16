@@ -24,16 +24,14 @@ Working example
 + View the working [test page](http://rawgithub.com/dfkaye/css-request-test/master/index.html)
 
 Word or two about Microsoft limit strategy
---------------------------------------------
+------------------------------------------
 
-As painful as it is to be unable to load more than 971 stylesheets, Microsoft's developers are 
-actually telling us something important when they limit the stylesheet payload to 32 or 255 or 
-whatever:
+As painful as it is to be unable to load an unlimited number of stylesheets and CSS rules, Microsoft's developers 
+are actually telling us something important when they limit the stylesheet payload to 32, 255, or 971:
 
-+ you're overloading the document with crap
-+ you're probably un-setting a lot of css rules you already labored over with dedication to 
-    get right the first time - better reduce the ruleset than complain about MSIE.
-+ CODE IS NOT ART, GET OVER IT (spoken with love and compassion, of course).
++ don't overload your document with cruft
++ you're probably un-setting a lot of CSS rules you already labored over with dedication to get right the first time.
+
 
 More to come&hellip;
 --------------------
