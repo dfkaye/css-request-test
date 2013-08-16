@@ -63,7 +63,7 @@
         try {
           onload();
         } catch (err) {
-          console.warn('error loading css at [' + url + ']: ' + err.message);
+          window.console && console.warn('error loading css at [' + url + ']: ' + err.message);
         } finally {
           callback();
         }
