@@ -78,7 +78,7 @@
     try {
       style.styleSheet.addImport(url);
     } catch (err) {
-      console && console.warn(err + ': ' + url);
+      window.console && console.warn(err + ': ' + url);
     } finally {
       callbacks.push(callback);
     } 
