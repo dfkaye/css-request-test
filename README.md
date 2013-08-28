@@ -21,7 +21,8 @@ Read these if you're unfamiliar with the problem:
 Working example
 ---------------
 
-+ View the working [test page](http://rawgithub.com/dfkaye/css-request-test/master/index.html)
+<a href='http://rawgithub.com/dfkaye/css-request-test/master/index.html' target='_new'
+  title='opens new window or tab'>view on rawgithub</a>
 
 Word or two about Microsoft limit strategy
 ------------------------------------------
