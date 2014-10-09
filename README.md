@@ -21,8 +21,8 @@ Read these if you're unfamiliar with the problem:
 Working example
 ---------------
 
-<a href='http://rawgithub.com/dfkaye/css-request-test/master/index.html' target='_new'
-  title='opens new window or tab'>view on rawgithub</a>
+<a href='http://rawgit.com/dfkaye/css-request-test/master/index.html' target='_new'
+  title='opens new window or tab'>view on rawgit</a>
 
 Word or two about Microsoft limit strategy
 ------------------------------------------
